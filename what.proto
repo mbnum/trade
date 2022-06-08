@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/mbnum/trade";
+
+package trade;
+
+import "matter.proto";
+
+service Hello {
+    rpc Ping(Msg) returns (Nothing);
+}

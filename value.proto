@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "github.com/mbnum/trade";
+
+package trade;
+
+enum Status {
+    active = 0;
+    inactive = 1;
+}

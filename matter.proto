@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "github.com/mbnum/trade";
+
+package trade;
+
+message Msg {
+    string text = 2;
+}
+
+message Nothing {
+}
