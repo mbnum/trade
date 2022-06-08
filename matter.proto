@@ -10,3 +10,199 @@ message Msg {
 
 message Nothing {
 }
+
+message Order {
+}
+
+// step, level e.g ship, pay
+message OrderAction {
+    string order_id = 3;
+    string id = 4;
+    repeated OrderAction nexts = 5;
+    OrderActionShip ship = 10;
+    OrderActionPay pay = 11;
+    OrderActionContact contact = 12;
+    OrderActionBooking booking = 13;
+    OrderActionCall call = 14;
+    OrderActionEmail email = 15;
+    OrderActionUpdateCustomer update_customer = 16;
+    OrderActionAssign assign = 17;
+    OrderActionCancel cancel = 18;
+    OrderActionConfirm confirm = 19;
+    OrderActionFeedback feedback = 20;
+    OrderActionNote note = 21;
+    OrderActionSms sms = 22;
+    OrderActionCampaign campaign = 23;
+    OrderActionConversation conversation = 24;
+    OrderActionComment comment = 25;
+}
+
+message OrderActionShip {
+}
+
+message OrderActionPay {
+}
+
+// source
+message OrderActionAffiliate {
+}
+
+// C3
+message OrderActionContact {
+}
+
+// schedule for call, email
+// TODO embed in other action
+message OrderActionBooking {
+}
+
+// saler
+message OrderActionAgency {
+}
+
+message OrderActionCall {
+}
+
+message OrderActionEmail {
+}
+
+message OrderActionUpdateCustomer {
+}
+
+message OrderActionCancel {
+}
+
+message OrderActionConfirm {
+}
+
+message OrderActionFeedback {
+}
+
+// or switch
+message OrderActionAssign {
+}
+
+message OrderActionNote {
+}
+
+message OrderActionSms {
+}
+
+message OrderActionCampaign {
+}
+
+message OrderActionConversation {
+}
+
+message OrderActionComment {
+}
+
+// e.g. call, contact, booking, feedback...
+message OrderChangeRequest {
+}
+
+message OrderChangeLog {
+}
+
+message OrderMetric {
+}
+
+// good & service
+message Product {
+}
+
+message CourseVideo {
+}
+
+// TODO replace for user
+message Context {}
+
+message User {
+    UserApp app = 2;
+    // UserAccount account = 3;
+    UserSession session = 4;
+}
+
+// use for init app e.g custom menus
+message UserApp {
+}
+
+message UserAccount {
+    repeated UserMember members = 2;
+}
+
+
+message UserMember {
+}
+
+message UserSession {
+}
+
+message UserSessionEvent {
+}
+
+message UserSessionMetric {
+}
+
+message UserAction {
+    string user_id = 2;
+    string id = 3;
+    UserActionEmail email = 4;
+}
+
+// e.g invoice, warn, reset password...
+message UserActionEmail {
+}
+
+message Touchpoint {
+}
+
+message LandingPage {
+}
+
+message Notification {
+}
+
+message Website {
+}
+
+message Shop {
+}
+
+message Page {
+}
+
+// TODO page action
+message PageActionPopup {
+}
+
+message Address {
+}
+
+message IPAddress {
+}
+
+message Promotion {
+}
+
+message Credit {
+}
+
+message BusinessHour {
+}
+
+// e.g. sass subscription
+message Service {
+}
+
+message Campaign {
+}
+
+message Key {
+    string order_id = 2;
+    string product_id = 3;
+    string user_id = 4;
+}
+
+message Webhook {
+}

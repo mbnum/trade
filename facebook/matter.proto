@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "github.com/mbnum/trade/facebook";
+
+package facebook;
+
+message Facebook {
+}
+
+// TODO should use other repo
