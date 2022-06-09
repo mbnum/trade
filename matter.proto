@@ -11,6 +11,8 @@ message Msg {
 message Nothing {
 }
 
+// setting/in/class/design, instance/out/object
+
 // TODO changeable_expire
 message Order {
     string account_id = 2;
@@ -19,6 +21,7 @@ message Order {
 
     string note = 7;
     int64 created = 8;
+    string created_referral = 35;
     string created_by = 9;
     string created_in = 10;
     int64 updated = 11;
@@ -27,53 +30,95 @@ message Order {
 
     CurrencyRate currency_rate = 19;
 
-    Payment payment = 6;
+    Payment payment = 6; // or cash
 
     Product product = 14;
     repeated Product products = 15;
-    Service service = 16;
+    Service service = 16; // or actionrun
     repeated Service services = 17;
 
-    Shipment shipment = 5;
+    Shipment shipment = 5; // or self ship
     Promotion promotion = 18;
 
     int64 subtotal = 20; // derived from product
     int64 total = 21; // derived
 
-    User buyer = 22;
+    User buyer = 22; // customer, purchaser
     User seller = 23;
 
     int64 assigned = 28;
 
     int64 dealed = 26;
+    int64 due_on_hour = 34;
 
     int64 paid = 24;
     int64 given = 25;
 
     string pipeline_id = 27;
     string pipeline_hash = 33;
-    string mode = 29; // debug
-
-    int64 scheduled = 30;
+    string mode = 29; // debug, strategy
     int64 action_head = 31;
-    OrderActionrun actionrun = 32;
+    OrderActionrun actionrun = 32; // level
 }
 
 message OrderActionrun {
-    string prev_action_id = 2;
     int64 index = 3;
+    string prev_action_id = 2;
     string action_id = 4;
     int64 created = 5;
     bytes state = 6;
-    repeated OrderActionruntime runtimes = 7;
+    string note = 8;
+    string status = 9; // derived
+    string assigned_to = 10; // who create change request
+    string assigned = 11;
+    int64 scheduled = 12;
 }
 
-message OrderActionruntime {
-    int64 begin_at = 2;
-    int64 end_at = 3;
-    string next_action_id = 4;
-    string error = 5;
-    string change_request_id = 6;
+// e.g. call, contact, booking, feedback...
+message OrderChangeRequest {
+    string account_id = 1;
+    string pipeline_id = 2;
+    string order_id = 3;
+    string mode = 4;
+    User user = 5;
+    string type = 6;
+    int64 created = 7;
+    PhoneCall phone_call = 8;
+    Mail mail = 9;
+    Sms sms = 10;
+}
+
+message PhoneCall {
+    string url = 2;
+    string from = 3;
+    string to = 4;
+    int64 length = 5;
+}
+
+message Mail {
+    string from = 2;
+    string to = 3;
+    string subject = 4;
+    string content = 5;
+}
+
+message Sms {
+    string from = 2;
+    string to = 3;
+    string content = 4;
+}
+
+message OrderChangeLog {
+    string account_id = 2;
+    string order_id = 3;
+    string id = 4;
+    int64 actionrun_index = 11;
+    int64 begin_at = 9;
+    int64 end_at = 10;
+    string error = 5; // 400(invalid, require), 300, 500
+    OrderChangeRequest in = 6;
+    Order src = 7; // diff only
+    Order dst = 8; // diff only
 }
 
 message CurrencyRate {
@@ -81,6 +126,10 @@ message CurrencyRate {
 
 // TODO tax on product, shipment...
 message Tax {
+}
+
+// scenario
+message Pipeline {
 }
 
 // step, level e.g ship, pay
@@ -107,12 +156,6 @@ message OrderAction {
 }
 
 message OrderActionShip {
-}
-
-message Shipment {
-}
-
-message Payment {
 }
 
 message OrderActionPay {
@@ -172,26 +215,30 @@ message OrderActionConversation {
 message OrderActionComment {
 }
 
-// e.g. call, contact, booking, feedback...
-message OrderChangeRequest {
-}
-
-message OrderChangeLog {
+message OrderActionCare {
 }
 
 message OrderMetric {
 }
+
+// TODO product category
 
 // good & service
 // TODO pos
 message Product {
     string account_id = 3;
     int64 quantity = 4;
+    string id = 5;
+    string name = 6;
+    int64 price = 7;
+    int64 compare_price = 8;
 }
 
 message CourseVideo {
 }
 
+// TODO loyalty customer
+// TODO referral
 // service context
 message User {
     string id = 1; // uuid, phone number, email
@@ -199,7 +246,8 @@ message User {
 
     // who
     Account account = 20; // personal
-    AccountMember member = 24;
+    AccountMember member = 24; // bob.dev.gg
+    AccountUser account_user = 29; // user1.user.gg
 
     // where
     WebBrowser web_browser = 40;
@@ -211,12 +259,28 @@ message User {
     string action_id = 80; // level
 }
 
+message AccountUser {
+    string account_id = 2;
+    string id = 9;
+    string name = 25;
+    string email = 26;
+    string phone = 27;
+    Address address = 28;
+    string avatar_url = 3;
+    int64 birthday = 4;
+    string gender = 5;
+    string job = 6;
+    string religion = 7;
+    string national = 8;
+}
+
 message Reqrun {
     string name = 1; // web-app, service
     int64 at = 2;
 }
 
 // TODO classify by email or phone number
+// TODO use order
 message Lead {
 }
 
@@ -240,6 +304,8 @@ message WebBrowser {
     string language = 5;
     string type = 6;
     string platform = 7;
+    string url = 8; // page url
+    string referral_url = 9; // prev url
 }
 
 // TODO in-active
@@ -295,6 +361,8 @@ message Address {
 message IPAddress {
 }
 
+// TODO coupon code is data
+// promotion is condition
 message Promotion {
 }
 
@@ -306,6 +374,14 @@ message BusinessHour {
 
 // e.g. sass subscription
 message Service {
+}
+
+message Shipment {
+    User shipper = 2;
+    User receiver = 3;
+}
+
+message Payment {
 }
 
 message Campaign {

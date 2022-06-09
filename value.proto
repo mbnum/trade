@@ -4,13 +4,14 @@ option go_package = "github.com/mbnum/trade";
 
 package trade;
 
-enum Status {
-    active = 0;
-    inactive = 1;
-}
-
 enum OrderStatus {
     open = 0;
     canceled = 1;
     done = 2;
+}
+
+enum Status {
+    pending = 0;
+    failure = 1;
+    success = 2;
 }
