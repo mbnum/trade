@@ -31,14 +31,12 @@ message Order {
 
     CurrencyRate currency_rate = 19;
 
-    Payment payment = 6; // or cash
+    Payment payment = 6;
 
     Product product = 14;
     repeated Product products = 15;
-    Service service = 16; // or actionrun
-    repeated Service services = 17;
 
-    Shipment shipment = 5; // or self ship
+    Shipment shipment = 5;
     Promotion promotion = 18;
 
     int64 subtotal = 20; // derived from product
