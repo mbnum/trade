@@ -11,7 +11,76 @@ message Msg {
 message Nothing {
 }
 
+// TODO changeable_expire
 message Order {
+    string account_id = 2;
+    string id = 3;
+    string alias = 4;
+
+    string note = 7;
+    int64 created = 8;
+    string created_by = 9;
+    string created_in = 10;
+    int64 updated = 11;
+    string updated_by = 12;
+    string status = 13; // derived
+
+    CurrencyRate currency_rate = 19;
+
+    Payment payment = 6;
+
+    Product product = 14;
+    repeated Product products = 15;
+    Service service = 16;
+    repeated Service services = 17;
+
+    Shipment shipment = 5;
+    Promotion promotion = 18;
+
+    int64 subtotal = 20; // derived from product
+    int64 total = 21; // derived
+
+    User buyer = 22;
+    User seller = 23;
+
+    int64 assigned = 28;
+
+    int64 dealed = 26;
+
+    int64 paid = 24;
+    int64 given = 25;
+
+    string pipeline_id = 27;
+    string pipeline_hash = 33;
+    string mode = 29; // debug
+
+    int64 scheduled = 30;
+    int64 action_head = 31;
+    OrderActionrun actionrun = 32;
+}
+
+message OrderActionrun {
+    string prev_action_id = 2;
+    int64 index = 3;
+    string action_id = 4;
+    int64 created = 5;
+    bytes state = 6;
+    repeated OrderActionruntime runtimes = 7;
+}
+
+message OrderActionruntime {
+    int64 begin_at = 2;
+    int64 end_at = 3;
+    string next_action_id = 4;
+    string error = 5;
+    string change_request_id = 6;
+}
+
+message CurrencyRate {
+}
+
+// TODO tax on product, shipment...
+message Tax {
 }
 
 // step, level e.g ship, pay
@@ -38,6 +107,12 @@ message OrderAction {
 }
 
 message OrderActionShip {
+}
+
+message Shipment {
+}
+
+message Payment {
 }
 
 message OrderActionPay {
@@ -108,40 +183,78 @@ message OrderMetric {
 }
 
 // good & service
+// TODO pos
 message Product {
+    string account_id = 3;
+    int64 quantity = 4;
 }
 
 message CourseVideo {
 }
 
-// TODO replace for user
-message Context {}
-
+// service context
 message User {
-    UserApp app = 2;
-    // UserAccount account = 3;
-    UserSession session = 4;
+    string id = 1; // uuid, phone number, email
+    string id_mask = 2;
+
+    // who
+    Account account = 20; // personal
+    AccountMember member = 24;
+
+    // where
+    WebBrowser web_browser = 40;
+
+    // when
+    repeated Reqrun reqruns = 60;
+
+    // how, use for init app e.g custom menus
+    string action_id = 80; // level
 }
 
-// use for init app e.g custom menus
-message UserApp {
+message Reqrun {
+    string name = 1; // web-app, service
+    int64 at = 2;
 }
 
-message UserAccount {
-    repeated UserMember members = 2;
+// TODO classify by email or phone number
+message Lead {
 }
 
-
-message UserMember {
+message Account {
+    string id = 1;
+    string email = 2;
+    string encrypted_password = 3;
+    string locale = 4;
 }
 
-message UserSession {
+message AccountMember {
+    string account_id = 1;
+    string id = 2;
 }
 
-message UserSessionEvent {
+message WebBrowser {
+    string ip = 1;
+    string user_agent = 2; // code
+    string screen_resolution = 3;
+    string timezone = 4;
+    string language = 5;
+    string type = 6;
+    string platform = 7;
 }
 
-message UserSessionMetric {
+// TODO in-active
+message UserEvent {
+}
+
+// in-passive
+message UserChangeRequest {
+}
+
+// notification out-active, user is out-passive
+message UserChangeLog {
+}
+
+message UserMetric {
 }
 
 message UserAction {
