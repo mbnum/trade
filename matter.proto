@@ -12,6 +12,7 @@ message Nothing {
 }
 
 // setting/in/class/design, instance/out/object
+// setting + change quest + current state = new state
 
 // TODO changeable_expire
 message Order {
@@ -355,7 +356,11 @@ message Page {
 message PageActionPopup {
 }
 
+// TODO other address
 message Address {
+    int32 po = 2; // 3, 2, 1 are province, district, ward
+    string id = 3; // hn-bd-st-cva
+    string name = 4; // chu văn an
 }
 
 message IPAddress {
