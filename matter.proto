@@ -42,9 +42,9 @@ message Order {
     int64 subtotal = 20; // derived from product
     int64 total = 21; // derived
 
-    User buyer = 22; // customer, purchaser
-    User seller = 23;
-    repeated User sellers = 33;
+    AccountMember buyer = 22; // customer, purchaser
+    AccountMember seller = 23;
+    repeated AccountMember sellers = 33;
 
     int64 assigned = 28;
 
@@ -76,11 +76,11 @@ message OrderActionrun {
 
 // e.g. call, contact, booking, feedback...
 message OrderChangeRequest {
+    Context ctx = 5;
     string account_id = 1;
     string pipeline_id = 2;
     string order_id = 3;
     string mode = 4;
-    User user = 5;
     string type = 6;
     int64 created = 7;
     PhoneCall phone_call = 8;
@@ -251,7 +251,7 @@ message CourseVideo {
 // TODO loyalty customer
 // TODO referral
 // service context
-message User {
+message Context {
     string id = 1; // uuid, phone number, email
     string id_mask = 2;
 
@@ -381,8 +381,8 @@ message Service {
 }
 
 message Shipment {
-    User shipper = 2;
-    User receiver = 3;
+    AccountMember shipper = 2;
+    AccountMember receiver = 3;
 }
 
 message Payment {
