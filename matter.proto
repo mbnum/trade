@@ -13,9 +13,8 @@ message Nothing {
 
 message Error {
     int32 class = 2;
-    string debug = 3;
-    int64 created = 4;
-    string code = 5;
+    string stack = 3;
+    string out = 5; // code, message
 }
 
 // time unit is ms

@@ -1,46 +1,32 @@
 package trade
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 )
 
-// Error returns string representation of an Error
 func (e *Error) Error() string {
-	if e == nil {
-		return ""
+	if e != nil {
+		return e.Out
 	}
-
-	b, _ := json.Marshal(e)
-	return "#ERR " + string(b)
+	return ""
 }
 
-func NewError(class int, code E, v ...interface{}) *Error {
-	var format, message string
-	if len(v) == 0 {
-		format = ""
-	} else {
-		var ok bool
-		format, ok = v[0].(string)
-		if !ok {
-			format = strings.Repeat("%v", len(v))
-		} else {
-			v = v[1:]
-		}
-	}
-	message = fmt.Sprintf(format, v...)
-	message += " #STACK " + getMinifiedStack()
+func NewE(class int, out string, v ...interface{}) *Error {
+	return &Error{Class: int32(class), Out: out, Stack: "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()}
+}
 
-	e := &Error{}
-	e.Class = int32(class)
-	e.Debug = message
-	e.Created = time.Now().UnixNano() / 1e6
-	e.Code = code.String()
-	return e
+func NewError(err error, v ...interface{}) *Error {
+	pberr, ok := err.(*Error)
+	if !ok {
+		return &Error{Class: 500, Out: err.Error(), Stack: "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()}
+	}
+	pberr.Stack += "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()
+	return pberr
 }
 
 func getMinifiedStack() string {
