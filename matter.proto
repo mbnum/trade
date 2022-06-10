@@ -248,12 +248,15 @@ message Product {
 message CourseVideo {
 }
 
+// TODO how, use for init app e.g custom menus
+
 // TODO loyalty customer
 // TODO referral
 // service context
 message Context {
     string id = 1; // uuid, phone number, email
     string id_mask = 2;
+    string account_id = 3;
 
     // who
     Account account = 20; // personal
@@ -264,9 +267,6 @@ message Context {
 
     // when
     repeated Reqrun reqruns = 60;
-
-    // how, use for init app e.g custom menus
-    string action_id = 80; // level
 }
 
 message Reqrun {
