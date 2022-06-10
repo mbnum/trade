@@ -44,6 +44,7 @@ message Order {
 
     User buyer = 22; // customer, purchaser
     User seller = 23;
+    repeated User sellers = 33;
 
     int64 assigned = 28;
 
@@ -54,7 +55,7 @@ message Order {
     int64 given = 25;
 
     string pipeline_id = 27;
-    string pipeline_hash = 33;
+    string pipeline_hash = 36;
     string mode = 29; // debug, strategy
     int64 action_head = 31;
     OrderActionrun actionrun = 32; // level
@@ -85,6 +86,17 @@ message OrderChangeRequest {
     PhoneCall phone_call = 8;
     Mail mail = 9;
     Sms sms = 10;
+    Lead lead = 11;
+}
+
+
+// TODO classify by email or phone number
+// TODO use order
+message Lead {
+    string name = 1;
+    string email = 2;
+    string phone = 3;
+    string product_id = 4;
 }
 
 message PhoneCall {
@@ -245,8 +257,7 @@ message User {
 
     // who
     Account account = 20; // personal
-    AccountMember member = 24; // bob.dev.gg
-    AccountUser account_user = 29; // user1.user.gg
+    AccountMember member = 24; // bob.dev.gg, user1.user.gg, phone.customer.gg
 
     // where
     WebBrowser web_browser = 40;
@@ -258,29 +269,9 @@ message User {
     string action_id = 80; // level
 }
 
-message AccountUser {
-    string account_id = 2;
-    string id = 9;
-    string name = 25;
-    string email = 26;
-    string phone = 27;
-    Address address = 28;
-    string avatar_url = 3;
-    int64 birthday = 4;
-    string gender = 5;
-    string job = 6;
-    string religion = 7;
-    string national = 8;
-}
-
 message Reqrun {
     string name = 1; // web-app, service
     int64 at = 2;
-}
-
-// TODO classify by email or phone number
-// TODO use order
-message Lead {
 }
 
 message Account {
@@ -293,6 +284,16 @@ message Account {
 message AccountMember {
     string account_id = 1;
     string id = 2;
+    string name = 25;
+    string email = 26;
+    string phone = 27;
+    Address address = 28;
+    string avatar_url = 3;
+    int64 birthday = 4;
+    string gender = 5;
+    string job = 6;
+    string religion = 7;
+    string national = 8;
 }
 
 message WebBrowser {
