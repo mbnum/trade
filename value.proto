@@ -15,3 +15,7 @@ enum Status {
     failure = 1;
     success = 2;
 }
+
+enum E {
+    account_not_found = 0;
+}

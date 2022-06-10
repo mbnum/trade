@@ -11,6 +11,14 @@ message Msg {
 message Nothing {
 }
 
+message Error {
+    int32 class = 2;
+    string debug = 3;
+    int64 created = 4;
+    string code = 5;
+}
+
+// time unit is ms
 // setting/in/class/design, instance/out/object
 // setting + change quest + current state = new state
 
