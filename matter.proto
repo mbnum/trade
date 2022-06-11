@@ -56,7 +56,7 @@ message Order {
     int64 assigned = 28;
 
     int64 dealed = 26;
-    int64 due_on_hour = 34;
+    int64 due_date = 34;
 
     int64 paid = 24;
     int64 given = 25;
@@ -66,6 +66,57 @@ message Order {
     string mode = 29; // debug, strategy
     int64 action_head = 31;
     OrderActionrun actionrun = 32; // level
+}
+
+message OrderMetric {
+    string status = 3;
+    string payment_status = 4;
+    string shipment_status = 5;
+    int64 order_count = 10;
+}
+
+message Orders {
+	repeated Order orders = 4;
+	string anchor = 5;
+	int64 total = 6;
+
+    repeated OrderMetric metrics = 7;
+    int64 order_total_sum = 8;
+}
+
+// TODO payment, shipment status
+// TODO pipeline, order-action-id
+message OrdersRequest {
+	string account_id = 2;
+
+	string user_id = 3; // list order by user
+	string status = 4; // list order by status
+
+	int64 created_hour_from = 5;
+	int64 created_hour_to = 6;
+	int64 due_date_hour_from = 20;
+	int64 due_date_hour_to = 21;
+
+	bool include_deleted = 7;
+
+	int32 limit = 8;
+	string anchor = 9;
+	int32 offset = 18;
+	string dim = 17;
+	string order_by = 19;
+
+	repeated string ids = 10;
+	repeated int64 modifieds = 11;
+	string query = 12;
+	bool is_draft = 13;
+	repeated string seller_ids = 16; // agent ids
+	repeated string statuses = 24;
+	repeated string not_statuses = 25;
+    string payment_status = 14;
+    repeated string shipment_statuses = 26;
+	repeated string not_shipment_statuses = 27;
+
+	string assigned_seller_id = 32;
 }
 
 message OrderActionrun {
@@ -95,7 +146,6 @@ message OrderChangeRequest {
     Sms sms = 10;
     Lead lead = 11;
 }
-
 
 // TODO classify by email or phone number
 // TODO use order
@@ -234,9 +284,6 @@ message OrderActionComment {
 }
 
 message OrderActionCare {
-}
-
-message OrderMetric {
 }
 
 // TODO product category
