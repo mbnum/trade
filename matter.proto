@@ -69,6 +69,7 @@ message Order {
     string mode = 29; // debug, strategy
     int64 action_head = 31;
     OrderActionrun actionrun = 32; // level
+    string pos_id = 39;
 }
 
 message OrderMetric {
@@ -555,4 +556,27 @@ message IntegratedShipping {
 	string ghn_client_id = 19;
 	string otp = 22;
 	Address address = 21;
+}
+
+message ProductFeed {
+}
+
+message ProductCollection {
+}
+
+message Bill {
+	string account_id = 2;
+	string id = 3;
+	string order_id = 4;
+
+	string created_by = 6;
+	int64 created = 7;
+
+	string method = 8; // manually
+
+	int64 amount = 12;
+
+	string description = 21;
+
+	string picture_url = 22;
 }
