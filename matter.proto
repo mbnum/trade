@@ -51,8 +51,10 @@ message Order {
     int64 subtotal = 20; // derived from product
     int64 total = 21; // derived
 
-    AccountMember buyer = 22; // customer, purchaser
-    AccountMember seller = 23;
+    string buyer_id = 40; // customer, purchaser
+    AccountMember buyer = 22; // derived
+    string seller_id = 41;
+    AccountMember seller = 23; // derived
     repeated AccountMember sellers = 33;
 
     int64 assigned = 28;
@@ -553,7 +555,6 @@ message IntegratedShipping {
 	int64 last_used = 12;
 	int64 first_error = 15;
 	string connect_status = 16; // connected || disconnected
-	string ghn_client_id = 19;
 	string otp = 22;
 	Address address = 21;
 }
@@ -589,4 +590,9 @@ message OrderComment {
     string account_id = 2;
     string order_id = 3;
     string id = 4;
+}
+
+message ShopeeShop {
+    string account_id = 2;
+    string id = 3;
 }
