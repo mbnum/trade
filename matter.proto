@@ -35,6 +35,8 @@ message Order {
     int64 updated = 11;
     string updated_by = 12;
     string status = 13; // derived
+    string shipment_status = 37; // derived
+    string payment_status = 38; // derived
 
     CurrencyRate currency_rate = 19;
 
@@ -55,6 +57,7 @@ message Order {
 
     int64 assigned = 28;
 
+    int64 issue_date = 62; // import case
     int64 dealed = 26;
     int64 due_date = 34;
 
@@ -297,6 +300,76 @@ message Product {
     string name = 6;
     int64 price = 7;
     int64 compare_price = 8;
+
+	repeated Product other_variants = 68;
+
+	string product_group_id = 69; // iphone-6-plus
+	string left_product_id = 56; // only server
+	string right_product_id = 57; // only server
+
+	string url = 70; // (shared)
+
+	string handle = 71; // (shared) iphone-6-plus-128G
+
+	string description = 11; // (shared)
+
+	repeated KV props = 14; // future replacement for props
+
+	string mobile_url = 17; // (shared)
+
+	// accessory.watch
+	string category = 16; // (shared)
+
+	string brand = 18; // (shared) brand name: apple, luis vuiton
+
+	int64 created = 20;
+	int64 updated = 21;
+	string created_by = 22;
+	string updated_by = 23;
+
+	string image = 30;
+	repeated string images = 31; // (shared)
+	repeated string additional_images = 32; // (shared)
+
+	repeated string videos = 33; // (shared)
+	repeated string additional_videos = 34; // (shared)
+
+	string note = 35; // (shared)
+
+	// shipping
+	bool requires_shipping = 36;
+
+	int64 days_to_ship = 37;
+	int64 dimension_width = 38;
+	int64 dimension_height = 39;
+	int64 dimension_length = 40;
+
+	int64 weight = 41;
+	string weight_unit = 42; // g, kg
+	bool allow_preorder = 44;
+
+	string condition = 47; // (shared) new, refurbished, used
+	string visibility = 48; // (shared) published, staging, hidden, deleted
+
+	string sku = 49;
+	string barcode = 50;
+
+	int64 stock = 60; //
+
+	string source_id = 61;
+
+	Tax tax = 64; // (shared)
+
+	string currency = 65;
+
+	int64 view_duration_sec = 67; // for event content_view only
+}
+
+message KV {
+	string key = 2;
+	string value = 3;
+	int64 key_int = 4;
+	int64 value_int = 5;
 }
 
 message CourseVideo {
@@ -454,4 +527,32 @@ message Key {
 }
 
 message Webhook {
+}
+
+message IntegratedShipping {
+	string account_id = 2;
+
+	string id = 18;
+	string codename = 3; // ghtk, ghn
+	string shop_id = 4;
+
+	string name = 5;
+	string phone = 6;
+	string email = 7;
+	string password = 8;
+	string api_token = 9;
+
+	string access_token = 10;
+	string refresh_token = 11;
+
+	int64 first_integrated = 13;
+	int64 integrated = 14;
+	string integrated_by = 17;
+
+	int64 last_used = 12;
+	int64 first_error = 15;
+	string connect_status = 16; // connected || disconnected
+	string ghn_client_id = 19;
+	string otp = 22;
+	Address address = 21;
 }
