@@ -559,9 +559,13 @@ message IntegratedShipping {
 }
 
 message ProductFeed {
+    string account_id = 2;
+    string id = 3;
 }
 
 message ProductCollection {
+    string account_id = 2;
+    string id = 3;
 }
 
 message Bill {
@@ -579,4 +583,10 @@ message Bill {
 	string description = 21;
 
 	string picture_url = 22;
+}
+
+message OrderComment {
+    string account_id = 2;
+    string order_id = 3;
+    string id = 4;
 }
