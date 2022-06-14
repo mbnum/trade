@@ -82,9 +82,9 @@ message OrderMetric {
 }
 
 message Orders {
-	repeated Order orders = 4;
-	string anchor = 5;
-	int64 total = 6;
+    repeated Order orders = 4;
+    string anchor = 5;
+    int64 total = 6;
 
     repeated OrderMetric metrics = 7;
     int64 order_total_sum = 8;
@@ -93,36 +93,36 @@ message Orders {
 // TODO payment, shipment status
 // TODO pipeline, order-action-id
 message OrdersRequest {
-	string account_id = 2;
+    string account_id = 2;
 
-	string user_id = 3; // list order by user
-	string status = 4; // list order by status
+    string user_id = 3; // list order by user
+    string status = 4; // list order by status
 
-	int64 created_hour_from = 5;
-	int64 created_hour_to = 6;
-	int64 due_date_hour_from = 20;
-	int64 due_date_hour_to = 21;
+    int64 created_hour_from = 5;
+    int64 created_hour_to = 6;
+    int64 due_date_hour_from = 20;
+    int64 due_date_hour_to = 21;
 
-	bool include_deleted = 7;
+    bool include_deleted = 7;
 
-	int32 limit = 8;
-	string anchor = 9;
-	int32 offset = 18;
-	string dim = 17;
-	string order_by = 19;
+    int32 limit = 8;
+    string anchor = 9;
+    int32 offset = 18;
+    string dim = 17;
+    string order_by = 19;
 
-	repeated string ids = 10;
-	repeated int64 modifieds = 11;
-	string query = 12;
-	bool is_draft = 13;
-	repeated string seller_ids = 16; // agent ids
-	repeated string statuses = 24;
-	repeated string not_statuses = 25;
+    repeated string ids = 10;
+    repeated int64 modifieds = 11;
+    string query = 12;
+    bool is_draft = 13;
+    repeated string seller_ids = 16; // agent ids
+    repeated string statuses = 24;
+    repeated string not_statuses = 25;
     string payment_status = 14;
     repeated string shipment_statuses = 26;
-	repeated string not_shipment_statuses = 27;
+    repeated string not_shipment_statuses = 27;
 
-	string assigned_seller_id = 32;
+    string assigned_seller_id = 32;
 }
 
 message OrderActionrun {
@@ -304,75 +304,110 @@ message Product {
     int64 price = 7;
     int64 compare_price = 8;
 
-	repeated Product other_variants = 68;
+    repeated Product other_variants = 68;
 
-	string product_group_id = 69; // iphone-6-plus
-	string left_product_id = 56; // only server
-	string right_product_id = 57; // only server
+    string product_group_id = 69; // iphone-6-plus
+    string left_product_id = 56; // only server
+    string right_product_id = 57; // only server
 
-	string url = 70; // (shared)
+    string url = 70; // (shared)
 
-	string handle = 71; // (shared) iphone-6-plus-128G
+    string handle = 71; // (shared) iphone-6-plus-128G
 
-	string description = 11; // (shared)
+    string description = 11; // (shared)
 
-	repeated KV props = 14; // future replacement for props
+    repeated KV props = 14; // future replacement for props
 
-	string mobile_url = 17; // (shared)
+    string mobile_url = 17; // (shared)
 
-	// accessory.watch
-	string category = 16; // (shared)
+    // accessory.watch
+    string category = 16; // (shared)
 
-	string brand = 18; // (shared) brand name: apple, luis vuiton
+    string brand = 18; // (shared) brand name: apple, luis vuiton
 
-	int64 created = 20;
-	int64 updated = 21;
-	string created_by = 22;
-	string updated_by = 23;
+    int64 created = 20;
+    int64 updated = 21;
+    string created_by = 22;
+    string updated_by = 23;
 
-	string image = 30;
-	repeated string images = 31; // (shared)
-	repeated string additional_images = 32; // (shared)
+    string image = 30;
+    repeated string images = 31; // (shared)
+    repeated string additional_images = 32; // (shared)
 
-	repeated string videos = 33; // (shared)
-	repeated string additional_videos = 34; // (shared)
+    repeated string videos = 33; // (shared)
+    repeated string additional_videos = 34; // (shared)
 
-	string note = 35; // (shared)
+    string note = 35; // (shared)
 
-	// shipping
-	bool requires_shipping = 36;
+    // shipping
+    bool requires_shipping = 36;
 
-	int64 days_to_ship = 37;
-	int64 dimension_width = 38;
-	int64 dimension_height = 39;
-	int64 dimension_length = 40;
+    int64 days_to_ship = 37;
+    int64 dimension_width = 38;
+    int64 dimension_height = 39;
+    int64 dimension_length = 40;
 
-	int64 weight = 41;
-	string weight_unit = 42; // g, kg
-	bool allow_preorder = 44;
+    int64 weight = 41;
+    string weight_unit = 42; // g, kg
+    bool allow_preorder = 44;
 
-	string condition = 47; // (shared) new, refurbished, used
-	string visibility = 48; // (shared) published, staging, hidden, deleted
+    string condition = 47; // (shared) new, refurbished, used
+    string visibility = 48; // (shared) published, staging, hidden, deleted
 
-	string sku = 49;
-	string barcode = 50;
+    string sku = 49;
+    string barcode = 50;
 
-	int64 stock = 60; //
+    int64 stock = 60; //
 
-	string source_id = 61;
+    string source_id = 61;
 
-	Tax tax = 64; // (shared)
+    Tax tax = 64; // (shared)
 
-	string currency = 65;
+    string currency = 65;
 
-	int64 view_duration_sec = 67; // for event content_view only
+    int64 view_duration_sec = 67; // for event content_view only
 }
 
+message Products {
+    repeated Product products = 2;
+    string anchor = 3;
+    int64 total = 4;
+}
+
+message ProductsRequest {
+    string account_id = 2;
+    string query = 3;
+    int32 limit = 4; // 200
+    string anchor = 5;
+    int32 offset = 16;
+
+    int64 price_gte = 6;
+    int64 price_lte = 7;
+
+    // [{key: 'colors', value:'red,blue', {key:'size', value:'xxl'}]
+    // returns all variants which color is (red OR blue) AND size is xxl
+    repeated KV props = 8;
+
+    string availability = 9; // instock, out_of_stock
+    string category = 10;
+
+    string visibility = 11; // published or hidden
+    repeated string ids = 12;
+    repeated int64 last_modifieds = 14; // ms
+    repeated string product_collection_ids = 15;
+
+    bool include_deleted = 17;
+
+    string sku = 18;
+    string url = 19;
+}
+
+
 message KV {
-	string key = 2;
-	string value = 3;
-	int64 key_int = 4;
-	int64 value_int = 5;
+    string key = 2;
+    string value = 3;
+    int64 key_int = 4;
+    int64 value_int = 5;
 }
 
 message CourseVideo {
@@ -533,30 +568,30 @@ message Webhook {
 }
 
 message IntegratedShipping {
-	string account_id = 2;
+    string account_id = 2;
 
-	string id = 18;
-	string codename = 3; // ghtk, ghn
-	string shop_id = 4;
+    string id = 18;
+    string codename = 3; // ghtk, ghn
+    string shop_id = 4;
 
-	string name = 5;
-	string phone = 6;
-	string email = 7;
-	string password = 8;
-	string api_token = 9;
+    string name = 5;
+    string phone = 6;
+    string email = 7;
+    string password = 8;
+    string api_token = 9;
 
-	string access_token = 10;
-	string refresh_token = 11;
+    string access_token = 10;
+    string refresh_token = 11;
 
-	int64 first_integrated = 13;
-	int64 integrated = 14;
-	string integrated_by = 17;
+    int64 first_integrated = 13;
+    int64 integrated = 14;
+    string integrated_by = 17;
 
-	int64 last_used = 12;
-	int64 first_error = 15;
-	string connect_status = 16; // connected || disconnected
-	string otp = 22;
-	Address address = 21;
+    int64 last_used = 12;
+    int64 first_error = 15;
+    string connect_status = 16; // connected || disconnected
+    string otp = 22;
+    Address address = 21;
 }
 
 message ProductFeed {
@@ -570,20 +605,20 @@ message ProductCollection {
 }
 
 message Bill {
-	string account_id = 2;
-	string id = 3;
-	string order_id = 4;
+    string account_id = 2;
+    string id = 3;
+    string order_id = 4;
 
-	string created_by = 6;
-	int64 created = 7;
+    string created_by = 6;
+    int64 created = 7;
 
-	string method = 8; // manually
+    string method = 8; // manually
 
-	int64 amount = 12;
+    int64 amount = 12;
 
-	string description = 21;
+    string description = 21;
 
-	string picture_url = 22;
+    string picture_url = 22;
 }
 
 message OrderComment {
