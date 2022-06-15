@@ -223,6 +223,13 @@ message PipelineCondition {
     repeated string channel = 2;
 }
 
+message Pipelines {
+	string account_id = 2;
+	repeated Pipeline pipelines = 3;
+	string anchor = 4;
+	int64 total = 5;
+}
+
 // step, level e.g ship, pay
 message OrderAction {
     string order_id = 3;
@@ -648,4 +655,9 @@ message OrderComment {
 message ShopeeShop {
     string account_id = 2;
     string id = 3;
+}
+
+message ListRequest {
+    string anchor = 2;
+    int32 limit = 3;
 }
