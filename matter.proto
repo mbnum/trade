@@ -204,13 +204,31 @@ message Tax {
 
 // scenario
 message Pipeline {
+    string account_id = 2;
+    string id = 3;
+    string name = 4;
+    string avatar = 5;
+    string state = 6;
+    int64 created = 7;
+    string created_by = 8;
+    int64 updated = 9;
+    string updated_by = 10;
+    OrderAction action = 11; // root
+    repeated OrderAction actions = 12;
+    string action_hash = 13;
+    PipelineCondition condition = 14;
+}
+
+message PipelineCondition {
+    repeated string channel = 2;
 }
 
 // step, level e.g ship, pay
 message OrderAction {
     string order_id = 3;
     string id = 4;
-    repeated OrderAction nexts = 5;
+    repeated string nexts = 26;
+    repeated OrderAction next_actions = 5; // derived
     OrderActionShip ship = 10;
     OrderActionPay pay = 11;
     OrderActionContact contact = 12;
