@@ -21,56 +21,153 @@ message Error {
 // setting/in/class/design, instance/out/object
 // setting + change quest + current state = new state
 
+message OrderItem {
+    string order_id = 9;
+    string product_id = 2; // sku
+    string quantity = 3;
+    int64 price = 6; // f(product, quantity)
+    int64 compare_at_price = 8; // original price
+    int64 discount = 7;
+    string name = 4;
+    string description = 5;
+}
+
+// TODO shipping address
+message OrderShipping {
+    string order_id = 2;
+    string service_id = 3;
+    int64 price = 4; // fee
+}
+
+// TODO billing address
+message OrderBilling {
+    string order_id = 2;
+    string service_id = 4;
+}
+
+message Transaction {
+    string account_id = 2;
+    string id = 3;
+    int64 amount = 4; // equal sum(payment.amount)
+    string status = 5;
+    int64 created = 6;
+    Payment payment = 7;
+    repeated Payment payments = 8;
+}
+
+message Transportation {
+    string account_id = 2;
+    string id = 3;
+    int64 fee = 4;
+    string status = 5;
+}
+
+// TODO coupon code is data
+// promotion is condition
+message Promotion {
+}
+
+// how to detect & fix error on whole e.g test on every dim
+// if has error, reset amount to zero
+// between order and transaction
+message Payment {
+    string transaction_id = 2;
+    string order_id = 3;
+    int64 amount = 4;
+    int64 created = 5;
+}
+
+// TODO quantity like payment.amount
+message Shipment {
+    string transportation_id = 2;
+    string order_id = 3;
+    int64 fee = 4;
+}
+
+// customer, purchaser
+message OrderBuyer {
+    string account_member_id = 2;
+    string email = 3;
+    string mobile = 4;
+    AccountMember account_member = 5; // derived
+}
+
+message OrderSeller {
+    string account_member_id = 2;
+    string email = 3;
+    string mobile = 4;
+    AccountMember account_member = 5; // derived
+    int64 assigned = 6;
+}
+
+message OrderActionrun {
+    int64 index = 3;
+    string prev_action_id = 2;
+    string action_id = 4;
+    int64 created = 5;
+    bytes state = 6;
+    string note = 8;
+    int64 scheduled = 12;
+    string status = 9; // derived
+}
+
 // TODO changeable_expire
 message Order {
     string account_id = 2;
     string id = 3;
     string alias = 4;
 
-    string note = 7;
     int64 created = 8;
     string created_referral = 35;
     string created_by = 9;
     string created_in = 10;
     int64 updated = 11;
     string updated_by = 12;
-    string status = 13; // derived
-    string shipment_status = 37; // derived
-    string payment_status = 38; // derived
-
-    CurrencyRate currency_rate = 19;
-
-    Payment payment = 6;
-
-    Product product = 14;
-    repeated Product products = 15;
-
-    Shipment shipment = 5;
-    Promotion promotion = 18;
-
-    int64 subtotal = 20; // derived from product
-    int64 total = 21; // derived
-
-    string buyer_id = 40; // customer, purchaser
-    AccountMember buyer = 22; // derived
-    string seller_id = 41;
-    AccountMember seller = 23; // derived
-    repeated AccountMember sellers = 33;
-
-    int64 assigned = 28;
-
-    int64 issue_date = 62; // import case
-    int64 dealed = 26;
-    int64 due_date = 34;
-
-    int64 paid = 24;
-    int64 given = 25;
 
     string pipeline_id = 27;
     string pipeline_hash = 36;
     string mode = 29; // debug, strategy
     int64 action_head = 31;
     OrderActionrun actionrun = 32; // level
+    repeated OrderActionrun actionruns = 48; // derived
+
+    OrderBuyer buyer = 22;
+    OrderSeller seller = 23;
+    repeated OrderSeller sellers = 33;
+
+    CurrencyRate currency_rate = 19;
+
+    OrderItem item = 14;
+    repeated OrderItem items = 15;
+
+    OrderBilling billing = 46;
+    repeated OrderBilling billings = 47;
+
+    OrderShipping shipping = 5; // like order-item
+    repeated OrderShipping shippings = 43;
+
+    Promotion promotion = 18;
+
+    int64 subtotal = 20; // derived from item
+    int64 total = 21; // derived from subtotal + shippingfee - promotion
+
+    int64 issue_date = 62; // import case
+    int64 dealed = 26;
+    int64 due_date = 34;
+
+    Shipment shipment = 44;
+    repeated Shipment shipments = 45;
+
+    Payment payment = 6;
+    repeated Payment payments = 42;
+
+    int64 paid = 24;
+    int64 given = 25;
+
+    string status = 13; // derived
+    string shipment_status = 37; // derived
+    string payment_status = 38; // derived
+
     string pos_id = 39;
 }
 
@@ -123,19 +220,6 @@ message OrdersRequest {
     repeated string not_shipment_statuses = 27;
 
     string assigned_seller_id = 32;
-}
-
-message OrderActionrun {
-    int64 index = 3;
-    string prev_action_id = 2;
-    string action_id = 4;
-    int64 created = 5;
-    bytes state = 6;
-    string note = 8;
-    string status = 9; // derived
-    string assigned_to = 10; // who create change request
-    string assigned = 11;
-    int64 scheduled = 12;
 }
 
 // e.g. call, contact, booking, feedback...
@@ -327,11 +411,11 @@ message Product {
     string id = 5;
     string name = 6;
     int64 price = 7;
-    int64 compare_price = 8;
+    int64 compare_at_price = 8; // original price
 
     repeated Product other_variants = 68;
 
-    string product_group_id = 69; // iphone-6-plus
+    string product_group_id = 69; // ring
     string left_product_id = 56; // only server
     string right_product_id = 57; // only server
 
@@ -427,7 +511,6 @@ message ProductsRequest {
     string url = 19;
 }
 
-
 message KV {
     string key = 2;
     string value = 3;
@@ -474,6 +557,10 @@ message Account {
 message AccountMember {
     string account_id = 1;
     string id = 2;
+    repeated AccountMember others = 68;
+    string member_group_id = 69; // ring
+    string left_member_id = 56; // only server
+    string right_member_id = 57; // only server
     string name = 25;
     string email = 26;
     string phone = 27;
@@ -555,11 +642,6 @@ message Address {
 message IPAddress {
 }
 
-// TODO coupon code is data
-// promotion is condition
-message Promotion {
-}
-
 message Credit {
 }
 
@@ -568,14 +650,6 @@ message BusinessHour {
 
 // e.g. sass subscription
 message Service {
-}
-
-message Shipment {
-    AccountMember shipper = 2;
-    AccountMember receiver = 3;
-}
-
-message Payment {
 }
 
 message Campaign {
