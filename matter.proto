@@ -88,16 +88,18 @@ message Shipment {
 message OrderBuyer {
     string account_member_id = 2;
     string email = 3;
-    string mobile = 4;
-    AccountMember account_member = 5; // derived
+    string phone = 4;
+    string name = 5;
+    AccountMember account_member = 6; // derived
 }
 
 message OrderSeller {
     string account_member_id = 2;
     string email = 3;
-    string mobile = 4;
-    AccountMember account_member = 5; // derived
-    int64 assigned = 6;
+    string phone = 4;
+    string name = 5;
+    AccountMember account_member = 6; // derived
+    int64 assigned = 7;
 }
 
 message OrderActionrun {
