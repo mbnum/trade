@@ -634,11 +634,16 @@ message Page {
 message PageActionPopup {
 }
 
+message Addresses {
+	repeated Address addresses = 3;
+}
+
 // TODO other address
 message Address {
     int32 po = 2; // 3, 2, 1 are province, district, ward
     string id = 3; // hn-bd-st-cva
     string province = 5;
+    string name = 13; // required po
     string district = 6;
     string street = 7;
     string ward = 8;
