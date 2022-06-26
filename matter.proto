@@ -24,7 +24,7 @@ message Error {
 message OrderItem {
     string order_id = 9;
     string product_id = 2; // sku
-    string quantity = 3;
+    int64 quantity = 3;
     int64 price = 6; // f(product, quantity)
     int64 compare_at_price = 8; // original price
     int64 discount = 7;
