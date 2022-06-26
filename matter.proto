@@ -172,6 +172,7 @@ message Order {
     string payment_status = 38; // derived
 
     string pos_id = 39;
+    map<string, string> fields = 58;
 }
 
 message OrderMetric {
