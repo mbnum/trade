@@ -274,6 +274,7 @@ message Sms {
 message OrderChangeLog {
     string account_id = 2;
     string order_id = 3;
+    string type = 12;
     string id = 4;
     int64 actionrun_index = 11;
     int64 begin_at = 9;
