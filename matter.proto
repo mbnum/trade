@@ -286,6 +286,12 @@ message OrderChangeLog {
     Order dst = 8; // diff only
 }
 
+message OrderChangeLogs {
+    repeated OrderChangeLog logs = 2;
+    string anchor = 3;
+    int64 total = 4;
+}
+
 message CurrencyRate {
 }
 
@@ -763,4 +769,5 @@ message ShopeeShop {
 message ListRequest {
     string anchor = 2;
     int32 limit = 3;
+    Key key = 4;
 }
