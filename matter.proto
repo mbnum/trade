@@ -176,7 +176,7 @@ message Order {
     map<string, string> fields = 58;
 }
 
-message OrderMetric {
+message OrdersCount {
     string status = 3;
     string payment_status = 4;
     string shipment_status = 5;
@@ -188,7 +188,7 @@ message Orders {
     string anchor = 5;
     int64 total = 6;
 
-    repeated OrderMetric metrics = 7;
+    repeated OrdersCount counts = 7;
     int64 order_total_sum = 8;
 }
 
