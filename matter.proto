@@ -133,6 +133,7 @@ message Order {
     int64 action_head = 31;
     OrderActionrun actionrun = 32; // level
     repeated OrderActionrun actionruns = 48; // derived
+    int64 log_head = 49;
 
     OrderBuyer buyer = 22;
     OrderSeller seller = 23;
