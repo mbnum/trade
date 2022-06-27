@@ -239,6 +239,7 @@ message OrderChangeRequest {
     Mail mail = 9;
     Sms sms = 10;
     Lead lead = 11;
+    Order order = 12;
 }
 
 // TODO classify by email or phone number
