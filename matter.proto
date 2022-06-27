@@ -120,10 +120,9 @@ message Order {
     string id = 3;
     string alias = 4;
 
+    string channel = 10; // created referral
     int64 created = 8;
-    string created_referral = 35;
     string created_by = 9;
-    string created_in = 10;
     int64 updated = 11;
     string updated_by = 12;
 
@@ -176,20 +175,68 @@ message Order {
     map<string, string> fields = 58;
 }
 
-message OrdersCount {
-    string status = 3;
-    string payment_status = 4;
-    string shipment_status = 5;
-    int64 order_count = 10;
-}
-
 message Orders {
     repeated Order orders = 4;
     string anchor = 5;
     int64 total = 6;
 
-    repeated OrdersCount counts = 7;
     int64 order_total_sum = 8;
+}
+
+message OrderMetrics {
+    repeated OrderMetric metrics = 2;
+}
+
+
+message OrderMetric {
+    string account_id = 2;
+    int64 created_hour = 20;
+    string created_date = 21; // derived
+    int64 paid_hour = 8;
+    string paid_date = 9; // derived
+    int64 issue_hour = 6;
+    string issue_date = 7; // derived
+
+    string pos_id = 12;
+    string channel = 13; // TODO
+    string seller_id = 15;
+
+    int64 product_id_bits = 16; // only system
+    string product_id_strings = 17; // only system
+    repeated string product_ids = 18;
+    string product_id = 19; // derived
+
+    int64 total = 10;
+    int64 payment_made = 11;
+
+    int64 order_count = 65;
+    int64 total_sum = 67; // derived
+    int64 canceled_count = 70;
+    int64 canceled_total_sum = 71; // derived
+    int64 done_count = 72;
+    int64 done_total_sum = 73; // derived
+    int64 open_count = 74;
+    int64 open_total_sum = 75; // derived
+    int64 paid_count = 66;
+    int64 payment_made_sum = 68; // derived
+    int64 returning_count = 69; // user paid more than 1
+}
+
+message OrderMetricsRequest {
+    string dim = 2;
+    int32 tz = 3;
+    string account_id = 10;
+    int64 issue_hour_from = 11;
+    int64 issue_hour_to = 12;
+    int64 paid_hour_from = 13;
+    int64 paid_hour_to = 14;
+    int64 created_hour_from = 25;
+    int64 created_hour_to = 26;
+    repeated string channels = 15;
+    repeated string not_channels = 16;
+    repeated string product_ids = 18; // and
+    repeated string seller_ids = 19; // and, agent ids
+    repeated string pos_ids = 20;
 }
 
 // TODO payment, shipment status
@@ -321,10 +368,10 @@ message PipelineCondition {
 }
 
 message Pipelines {
-	string account_id = 2;
-	repeated Pipeline pipelines = 3;
-	string anchor = 4;
-	int64 total = 5;
+    string account_id = 2;
+    repeated Pipeline pipelines = 3;
+    string anchor = 4;
+    int64 total = 5;
 }
 
 // step, level e.g ship, pay
@@ -646,7 +693,7 @@ message PageActionPopup {
 }
 
 message Addresses {
-	repeated Address addresses = 3;
+    repeated Address addresses = 3;
 }
 
 // TODO other address
@@ -661,17 +708,17 @@ message Address {
     string spot = 10; // street number
     string instruction = 9;
     GHNAddress ghn = 11;
-	Address ghtk = 12;
+    Address ghtk = 12;
 }
 
 message GHNAddress {
-	int64 ProvinceID = 2;
-	string ProvinceName = 3;
-	int64 DistrictID = 4;
-	string DistrictName = 5;
-	int64 Code = 6;
-	string WardName = 7;
-	string WardCode = 8;
+    int64 ProvinceID = 2;
+    string ProvinceName = 3;
+    int64 DistrictID = 4;
+    string DistrictName = 5;
+    int64 Code = 6;
+    string WardName = 7;
+    string WardCode = 8;
 }
 
 message IPAddress {
