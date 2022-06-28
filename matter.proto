@@ -270,6 +270,7 @@ message OrdersRequest {
     string payment_status = 14;
     repeated string shipment_statuses = 26;
     repeated string not_shipment_statuses = 27;
+    repeated string action_ids = 28;
 
     string assigned_seller_id = 32;
 }
