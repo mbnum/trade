@@ -87,19 +87,15 @@ message Shipment {
 
 // customer, purchaser
 message OrderBuyer {
-    string account_member_id = 2;
+    string id = 2;
     string email = 3;
     string phone = 4;
     string name = 5;
-    AccountMember account_member = 6; // derived
 }
 
 message OrderSeller {
-    string account_member_id = 2;
-    string email = 3;
-    string phone = 4;
+    string id = 2;
     string name = 5;
-    AccountMember account_member = 6; // derived
     int64 assigned = 7;
 }
 
@@ -590,13 +586,12 @@ message CourseVideo {
 // TODO referral
 // service context
 message Context {
-    string id = 1; // uuid, phone number, email
+    string id = 1;
     string id_mask = 2;
-    string account_id = 3;
+    string account_id = 3; // root
 
     // who
-    Account account = 20; // personal
-    AccountMember member = 24; // bob.dev.gg, user1.user.gg, phone.customer.gg
+    Account account = 20; // root or member
 
     // where
     WebBrowser web_browser = 40;
@@ -610,30 +605,28 @@ message Reqrun {
     int64 at = 2;
 }
 
+// TODO user, teacher, student... profile(birthday,gender,job,religion,national,email,phone,address)
+// full id like bob.dev.gg, user1.user.gg, phone.customer.gg
+// public, private, test, system...
+// 2layer root, member so account_id is root
+// root account has par is root|root.public|root.uuid
+// TODO use uuid mask for all id
+// TODO member agent, user e.g type are user.phone, agent.username
+// account should have mask, token
 message Account {
-    string id = 1;
-    string email = 2;
-    string encrypted_password = 3;
-    string locale = 4;
-}
+    string par = 1; // chain of partition keys
+    string type = 3; // phone|email|username|group..., uuid mask by app, token
+    string id = 2; // depend on type
+    string name = 11;
+    string state = 4;
+    string created = 5;
+    string updated = 6;
+    string authenticated = 7; // opt, active link, contract, by other account
+    string locale = 8;
 
-message AccountMember {
-    string account_id = 1;
-    string id = 2;
-    repeated AccountMember others = 68;
-    string member_group_id = 69; // ring
-    string left_member_id = 56; // only server
-    string right_member_id = 57; // only server
-    string name = 25;
-    string email = 26;
-    string phone = 27;
-    Address address = 28;
-    string avatar_url = 3;
-    int64 birthday = 4;
-    string gender = 5;
-    string job = 6;
-    string religion = 7;
-    string national = 8;
+    repeated Account others = 9; // only par, type and id
+    string encrypted_password = 10;
+    string avatar_url = 12;
 }
 
 message WebBrowser {
