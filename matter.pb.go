@@ -6902,6 +6902,69 @@ func (x *CreateAgentRequest) GetPassword() string {
 	return ""
 }
 
+type Agents struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Agents []*Account `protobuf:"bytes,2,rep,name=agents,proto3" json:"agents,omitempty"`
+	Anchor string     `protobuf:"bytes,3,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	Total  int64      `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *Agents) Reset() {
+	*x = Agents{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[92]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Agents) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Agents) ProtoMessage() {}
+
+func (x *Agents) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[92]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Agents.ProtoReflect.Descriptor instead.
+func (*Agents) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{92}
+}
+
+func (x *Agents) GetAgents() []*Account {
+	if x != nil {
+		return x.Agents
+	}
+	return nil
+}
+
+func (x *Agents) GetAnchor() string {
+	if x != nil {
+		return x.Anchor
+	}
+	return ""
+}
+
+func (x *Agents) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -7789,7 +7852,13 @@ var file_matter_proto_rawDesc = []byte{
 	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75,
 	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
 	0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
-	0x6f, 0x72, 0x64, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6f, 0x72, 0x64, 0x22, 0x5e, 0x0a, 0x06, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x26, 0x0a,
+	0x06, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e,
+	0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x06, 0x61,
+	0x67, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72, 0x12, 0x14, 0x0a,
+	0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
 	0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
@@ -7806,7 +7875,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 93)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 94)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                       // 0: trade.Msg
 	(*Nothing)(nil),                   // 1: trade.Nothing
@@ -7900,7 +7969,8 @@ var file_matter_proto_goTypes = []interface{}{
 	(*ShopeeShop)(nil),                // 89: trade.ShopeeShop
 	(*ListRequest)(nil),               // 90: trade.ListRequest
 	(*CreateAgentRequest)(nil),        // 91: trade.CreateAgentRequest
-	nil,                               // 92: trade.Order.FieldsEntry
+	(*Agents)(nil),                    // 92: trade.Agents
+	nil,                               // 93: trade.Order.FieldsEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	75, // 0: trade.OrderShipping.address:type_name -> trade.Address
@@ -7923,7 +7993,7 @@ var file_matter_proto_depIdxs = []int32{
 	10, // 17: trade.Order.shipments:type_name -> trade.Shipment
 	9,  // 18: trade.Order.payment:type_name -> trade.Payment
 	9,  // 19: trade.Order.payments:type_name -> trade.Payment
-	92, // 20: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	93, // 20: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	14, // 21: trade.Orders.orders:type_name -> trade.Order
 	17, // 22: trade.OrderMetrics.metrics:type_name -> trade.OrderMetric
 	57, // 23: trade.OrderChangeRequest.ctx:type_name -> trade.Context
@@ -7972,11 +8042,12 @@ var file_matter_proto_depIdxs = []int32{
 	75, // 66: trade.Address.ghtk:type_name -> trade.Address
 	75, // 67: trade.IntegratedShipping.address:type_name -> trade.Address
 	82, // 68: trade.ListRequest.key:type_name -> trade.Key
-	69, // [69:69] is the sub-list for method output_type
-	69, // [69:69] is the sub-list for method input_type
-	69, // [69:69] is the sub-list for extension type_name
-	69, // [69:69] is the sub-list for extension extendee
-	0,  // [0:69] is the sub-list for field type_name
+	59, // 69: trade.Agents.agents:type_name -> trade.Account
+	70, // [70:70] is the sub-list for method output_type
+	70, // [70:70] is the sub-list for method input_type
+	70, // [70:70] is the sub-list for extension type_name
+	70, // [70:70] is the sub-list for extension extendee
+	0,  // [0:70] is the sub-list for field type_name
 }
 
 func init() { file_matter_proto_init() }
@@ -9089,6 +9160,18 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[92].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Agents); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -9096,7 +9179,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   93,
+			NumMessages:   94,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

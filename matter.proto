@@ -183,7 +183,6 @@ message OrderMetrics {
     repeated OrderMetric metrics = 2;
 }
 
-
 message OrderMetric {
     string account_id = 2;
     int64 created_hour = 20;
@@ -818,4 +817,10 @@ message ListRequest {
 message CreateAgentRequest {
     string username = 2;
     string password = 3;
+}
+
+message Agents {
+    repeated Account agents = 2;
+    string anchor = 3;
+    int64 total = 4;
 }
