@@ -619,9 +619,9 @@ message Account {
     string id = 2; // depend on type
     string name = 11;
     string state = 4;
-    string created = 5;
-    string updated = 6;
-    string authenticated = 7; // opt, active link, contract, by other account
+    int64 created = 5;
+    int64 updated = 6;
+    int64 authenticated = 7; // opt, active link, contract, by other account
     string locale = 8;
 
     repeated Account others = 9; // only par, type and id
@@ -813,4 +813,9 @@ message ListRequest {
     string anchor = 2;
     int32 limit = 3;
     Key key = 4;
+}
+
+message CreateAgentRequest {
+    string username = 2;
+    string password = 3;
 }

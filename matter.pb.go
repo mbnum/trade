@@ -4916,9 +4916,9 @@ type Account struct {
 	Id                string     `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`     // depend on type
 	Name              string     `protobuf:"bytes,11,opt,name=name,proto3" json:"name,omitempty"`
 	State             string     `protobuf:"bytes,4,opt,name=state,proto3" json:"state,omitempty"`
-	Created           string     `protobuf:"bytes,5,opt,name=created,proto3" json:"created,omitempty"`
-	Updated           string     `protobuf:"bytes,6,opt,name=updated,proto3" json:"updated,omitempty"`
-	Authenticated     string     `protobuf:"bytes,7,opt,name=authenticated,proto3" json:"authenticated,omitempty"` // opt, active link, contract, by other account
+	Created           int64      `protobuf:"varint,5,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           int64      `protobuf:"varint,6,opt,name=updated,proto3" json:"updated,omitempty"`
+	Authenticated     int64      `protobuf:"varint,7,opt,name=authenticated,proto3" json:"authenticated,omitempty"` // opt, active link, contract, by other account
 	Locale            string     `protobuf:"bytes,8,opt,name=locale,proto3" json:"locale,omitempty"`
 	Others            []*Account `protobuf:"bytes,9,rep,name=others,proto3" json:"others,omitempty"` // only par, type and id
 	EncryptedPassword string     `protobuf:"bytes,10,opt,name=encrypted_password,json=encryptedPassword,proto3" json:"encrypted_password,omitempty"`
@@ -4992,25 +4992,25 @@ func (x *Account) GetState() string {
 	return ""
 }
 
-func (x *Account) GetCreated() string {
+func (x *Account) GetCreated() int64 {
 	if x != nil {
 		return x.Created
 	}
-	return ""
+	return 0
 }
 
-func (x *Account) GetUpdated() string {
+func (x *Account) GetUpdated() int64 {
 	if x != nil {
 		return x.Updated
 	}
-	return ""
+	return 0
 }
 
-func (x *Account) GetAuthenticated() string {
+func (x *Account) GetAuthenticated() int64 {
 	if x != nil {
 		return x.Authenticated
 	}
-	return ""
+	return 0
 }
 
 func (x *Account) GetLocale() string {
@@ -6847,6 +6847,61 @@ func (x *ListRequest) GetKey() *Key {
 	return nil
 }
 
+type CreateAgentRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *CreateAgentRequest) Reset() {
+	*x = CreateAgentRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[91]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAgentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAgentRequest) ProtoMessage() {}
+
+func (x *CreateAgentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[91]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAgentRequest.ProtoReflect.Descriptor instead.
+func (*CreateAgentRequest) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{91}
+}
+
+func (x *CreateAgentRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *CreateAgentRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -7556,11 +7611,11 @@ var file_matter_proto_rawDesc = []byte{
 	0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65,
 	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x18, 0x0a,
-	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07,
 	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x65, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
 	0x64, 0x12, 0x24, 0x0a, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74,
-	0x65, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e,
+	0x65, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e,
 	0x74, 0x69, 0x63, 0x61, 0x74, 0x65, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x6c, 0x6f, 0x63, 0x61, 0x6c,
 	0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6c, 0x6f, 0x63, 0x61, 0x6c, 0x65, 0x12,
 	0x26, 0x0a, 0x06, 0x6f, 0x74, 0x68, 0x65, 0x72, 0x73, 0x18, 0x09, 0x20, 0x03, 0x28, 0x0b, 0x32,
@@ -7729,9 +7784,14 @@ var file_matter_proto_rawDesc = []byte{
 	0x72, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
 	0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x1c, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x04,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x4b, 0x65, 0x79,
-	0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x4c, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41,
+	0x67, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75,
+	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75,
+	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -7746,7 +7806,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 93)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                       // 0: trade.Msg
 	(*Nothing)(nil),                   // 1: trade.Nothing
@@ -7839,7 +7899,8 @@ var file_matter_proto_goTypes = []interface{}{
 	(*OrderComment)(nil),              // 88: trade.OrderComment
 	(*ShopeeShop)(nil),                // 89: trade.ShopeeShop
 	(*ListRequest)(nil),               // 90: trade.ListRequest
-	nil,                               // 91: trade.Order.FieldsEntry
+	(*CreateAgentRequest)(nil),        // 91: trade.CreateAgentRequest
+	nil,                               // 92: trade.Order.FieldsEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	75, // 0: trade.OrderShipping.address:type_name -> trade.Address
@@ -7862,7 +7923,7 @@ var file_matter_proto_depIdxs = []int32{
 	10, // 17: trade.Order.shipments:type_name -> trade.Shipment
 	9,  // 18: trade.Order.payment:type_name -> trade.Payment
 	9,  // 19: trade.Order.payments:type_name -> trade.Payment
-	91, // 20: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	92, // 20: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	14, // 21: trade.Orders.orders:type_name -> trade.Order
 	17, // 22: trade.OrderMetrics.metrics:type_name -> trade.OrderMetric
 	57, // 23: trade.OrderChangeRequest.ctx:type_name -> trade.Context
@@ -9016,6 +9077,18 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[91].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateAgentRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -9023,7 +9096,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   92,
+			NumMessages:   93,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
