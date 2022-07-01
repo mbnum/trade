@@ -169,6 +169,9 @@ message Order {
 
     string pos_id = 39;
     map<string, string> fields = 58;
+
+    repeated string other_ids_buyer_email = 59; // derived
+    repeated string other_ids_buyer_phone = 60; // derived
 }
 
 message Orders {
