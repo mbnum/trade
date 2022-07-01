@@ -591,6 +591,7 @@ message Context {
     string id = 1;
     string id_mask = 2;
     string account_id = 3; // root
+    repeated string fields = 4;
 
     // who
     Account account = 20; // root or member
