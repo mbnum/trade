@@ -828,3 +828,19 @@ message Agents {
     string anchor = 3;
     int64 total = 4;
 }
+
+message AssignmentAgent {
+    string agent_id = 2;
+    int64 order_count = 3;
+}
+
+message AssignmentUnixHour {
+    int64 unix_hour = 2;
+    repeated AssignmentAgent agents = 3;
+}
+
+message Assignment {
+    string account_id = 2;
+    repeated AssignmentAgent capacity = 3;
+    repeated AssignmentUnixHour actual = 4;
+}
