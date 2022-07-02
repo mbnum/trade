@@ -83,6 +83,7 @@ message Shipment {
     string transportation_id = 2;
     string order_id = 3;
     int64 fee = 4;
+    string code = 5;
 }
 
 // customer, purchaser
