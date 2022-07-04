@@ -36,7 +36,7 @@ message OrderItem {
 message OrderShipping {
     string order_id = 2;
     string service_id = 3;
-    int64 price = 4; // fee
+    int64 fee = 4;
     Address address = 5; // dst
 }
 
@@ -44,8 +44,13 @@ message OrderShipping {
 message OrderBilling {
     string order_id = 2;
     string service_id = 4;
+    string payment_method = 5;
+    string payment_gateway = 6;
+    int64 fee = 7; // 0
+    Address address = 8; // if payment method is cod
 }
 
+// TODO bank, credit
 message Transaction {
     string account_id = 2;
     string id = 3;
@@ -173,6 +178,9 @@ message Order {
 
     repeated string other_ids_buyer_email = 59; // derived
     repeated string other_ids_buyer_phone = 60; // derived
+
+    OrderGroup group = 61; // derived from ctx
+    repeated string tags = 63;
 }
 
 message Orders {
@@ -181,6 +189,16 @@ message Orders {
     int64 total = 6;
 
     int64 order_total_sum = 8;
+}
+
+// require range value is small
+message OrderGroup {
+    string source = 2;
+    string source_domain = 4;
+    string source_marketer = 5;
+    string channel = 3;
+    string classify = 6; // manual
+    int32 priority = 7;
 }
 
 message OrderMetrics {
