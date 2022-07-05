@@ -398,6 +398,8 @@ message Pipelines {
 message OrderAction {
     string order_id = 3;
     string id = 4;
+    string name = 6;
+    string description = 7;
     repeated string nexts = 26;
     repeated OrderAction next_actions = 5; // derived
     OrderActionShip ship = 10;
