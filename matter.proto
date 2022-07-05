@@ -834,7 +834,7 @@ message ShopeeShop {
 message ListRequest {
     string anchor = 2;
     int32 limit = 3;
-    Key key = 4;
+    Key key = 4; // only http body
 }
 
 message CreateAgentRequest {
