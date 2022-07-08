@@ -258,7 +258,7 @@ message OrderMetricsRequest {
 }
 
 // ref order-metric exclude what belongs to order-action
-message OrderActionMetric {
+message OrderActionrunMetric {
     string account_id = 2;
     string created_hour = 3;
     string created_date = 4; // derived
@@ -280,7 +280,7 @@ message OrderActionMetric {
     int64 action_count = 15;
 }
 
-message OrderActionMetricsRequest {
+message OrderActionrunMetricsRequest {
     string dim = 2;
     int32 tz = 3;
     string account_id = 10;
