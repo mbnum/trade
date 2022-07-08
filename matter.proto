@@ -107,6 +107,7 @@ message OrderSeller {
 
 message OrderActionrun {
     int64 index = 3;
+    string pipeline_id = 13;
     string prev_action_id = 2;
     string action_id = 4;
     int64 created = 5;
@@ -254,6 +255,43 @@ message OrderMetricsRequest {
     repeated string product_ids = 18; // and
     repeated string seller_ids = 19; // and, agent ids
     repeated string pos_ids = 20;
+}
+
+// ref order-metric exclude what belongs to order-action
+message OrderActionMetric {
+    string account_id = 2;
+    string created_hour = 3;
+    string created_date = 4; // derived
+
+    string pos_id = 5;
+    string channel = 6; // TODO
+    string seller_id = 7;
+
+    int64 product_id_bits = 8; // only system
+    string product_id_strings = 9; // only system
+    repeated string product_ids = 10;
+    string product_id = 11; // derived
+
+    int64 total = 12;
+
+    string pipeline_id = 13;
+    string action_id = 14; // default dim
+
+    int64 action_count = 15;
+}
+
+message OrderActionMetricsRequest {
+    string dim = 2;
+    int32 tz = 3;
+    string account_id = 10;
+    int64 created_hour_from = 25;
+    int64 created_hour_to = 26;
+    repeated string channels = 15;
+    repeated string not_channels = 16;
+    repeated string product_ids = 18; // and
+    repeated string seller_ids = 19; // and, agent ids
+    repeated string pos_ids = 20;
+    string pipeline_id = 21;
 }
 
 // TODO payment, shipment status
