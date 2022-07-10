@@ -310,6 +310,8 @@ message OrdersRequest {
     int64 issue_hour_to = 34;
     int64 assigned_hour_from = 35;
     int64 assigned_hour_to = 36;
+    int64 scheduled_hour_from = 37;
+    int64 scheduled_hour_to = 38;
 
     bool include_deleted = 7;
 
