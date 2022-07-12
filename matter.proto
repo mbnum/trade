@@ -263,7 +263,7 @@ message OrderMetricsRequest {
 message OrderActionrunMetric {
     string account_id = 2;
     int64 created_hour = 3;
-    int64 created_date = 4; // derived
+    string created_date = 4; // derived
 
     string pos_id = 5;
     string channel = 6; // TODO
