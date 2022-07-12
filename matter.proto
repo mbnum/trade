@@ -912,4 +912,5 @@ message Assignment {
     string account_id = 2;
     repeated AssignmentAgent capacity = 3;
     repeated AssignmentUnixHour actual = 4;
+    bool assign_on_create = 5;
 }
