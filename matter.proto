@@ -262,8 +262,8 @@ message OrderMetricsRequest {
 // ref order-metric exclude what belongs to order-action
 message OrderActionrunMetric {
     string account_id = 2;
-    string created_hour = 3;
-    string created_date = 4; // derived
+    int64 created_hour = 3;
+    int64 created_date = 4; // derived
 
     string pos_id = 5;
     string channel = 6; // TODO
