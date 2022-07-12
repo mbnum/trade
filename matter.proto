@@ -183,6 +183,7 @@ message Order {
 
     OrderGroup group = 61; // derived from ctx
     repeated string tags = 63;
+    string source_id = 64;
 }
 
 message Orders {
