@@ -279,7 +279,7 @@ message OrderActionrunMetric {
     string pipeline_id = 13;
     string action_id = 14; // default dim
 
-    int64 action_count = 15;
+    int64 actionrun_count = 15;
 }
 
 message OrderActionrunMetricsRequest {
