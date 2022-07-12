@@ -282,6 +282,10 @@ message OrderActionrunMetric {
     int64 actionrun_count = 15;
 }
 
+message OrderActionrunMetrics {
+    repeated OrderActionrunMetric metrics = 2;
+};
+
 message OrderActionrunMetricsRequest {
     string dim = 2;
     int32 tz = 3;
