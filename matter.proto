@@ -116,6 +116,7 @@ message OrderActionrun {
     string note = 8;
     int64 scheduled = 12;
     string status = 9; // derived
+    string status2 = 10;
 }
 
 // TODO changeable_expire
@@ -451,6 +452,7 @@ message OrderAction {
     string name = 6;
     string description = 7;
     repeated string statuses = 8;
+    repeated string statuses2 = 27;
     repeated string notes = 9;
     repeated string nexts = 26;
     repeated OrderAction next_actions = 5; // derived
