@@ -306,6 +306,10 @@ message OrderActionrunMetricsRequest {
 message OrdersRequest {
     string account_id = 2;
 
+    bool include_deleted = 7;
+    bool is_draft = 13;
+    bool is_count = 39;
+
     string user_id = 3; // list order by user
     string status = 4; // list order by status
 
@@ -320,8 +324,6 @@ message OrdersRequest {
     int64 scheduled_hour_from = 37;
     int64 scheduled_hour_to = 38;
 
-    bool include_deleted = 7;
-
     int32 limit = 8;
     string anchor = 9;
     int32 offset = 18;
@@ -331,7 +333,6 @@ message OrdersRequest {
     repeated string ids = 10;
     repeated int64 modifieds = 11;
     string query = 12;
-    bool is_draft = 13;
     repeated string seller_ids = 16; // agent ids
     repeated string statuses = 24;
     repeated string not_statuses = 25;
