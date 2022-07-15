@@ -17,6 +17,28 @@ message Error {
     string out = 5; // code, message
 }
 
+message IntParam {
+	int64 eq = 2;
+	int64 neq = 3;
+	int64 gt = 4;
+	int64 gte = 5;
+	int64 lt = 6;
+	int64 lte = 7;
+}
+
+message StringParam {
+	string eq = 2;
+    int64 neq = 3;
+	repeated string in = 4;
+	string contain = 5;
+}
+
+message Param {
+    string f = 2;
+    IntParam i = 3;
+    StringParam s = 4;
+}
+
 // time unit is ms
 // setting/in/class/design, instance/out/object
 // setting + change quest + current state = new state
@@ -309,6 +331,7 @@ message OrdersRequest {
     bool include_deleted = 7;
     bool is_draft = 13;
     bool is_count = 39;
+    string assigned_seller_id = 32;
 
     string user_id = 3; // list order by user
     string status = 4; // list order by status
@@ -342,8 +365,10 @@ message OrdersRequest {
 
     string pipeline_id = 29;
     repeated string action_ids = 28;
+    int64 action_created_hour_from = 40;
+    int64 action_created_hour_to = 41;
 
-    string assigned_seller_id = 32;
+    repeated Param extra = 42;
 }
 
 // e.g. call, contact, booking, feedback...
