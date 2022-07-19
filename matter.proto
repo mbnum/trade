@@ -287,6 +287,8 @@ message OrderActionrunMetric {
     string account_id = 2;
     int64 created_hour = 3;
     string created_date = 4; // derived
+    int64 issue_hour = 16;
+    string issue_date = 17; // derived
 
     string pos_id = 5;
     string channel = 6; // TODO
@@ -315,6 +317,8 @@ message OrderActionrunMetricsRequest {
     string account_id = 10;
     int64 created_hour_from = 25;
     int64 created_hour_to = 26;
+    int64 issue_hour_from = 33;
+    int64 issue_hour_to = 34;
     repeated string channels = 15;
     repeated string not_channels = 16;
     repeated string product_ids = 18; // and
