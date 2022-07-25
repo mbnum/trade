@@ -19,3 +19,16 @@ enum Status {
 enum E {
     account_not_found = 0;
 }
+
+enum AccountScope {
+    order = 0;
+    order_read = 1;
+    order_assign = 2; // order_update
+    order_take = 3; // order_update just first assign
+    product = 10;
+    product_read = 11;
+    pipeline = 20;
+    pipeline_read = 21;
+    agent = 30;
+    agent_read = 31;
+}
