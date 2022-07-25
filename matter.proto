@@ -46,6 +46,7 @@ message Param {
 message OrderItem {
     string order_id = 9;
     string product_id = 2; // or sku
+    Product product = 11; // derived
     string sku = 10;
     int64 quantity = 3;
     int64 price = 6; // f(product, quantity)
