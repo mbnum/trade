@@ -31,4 +31,5 @@ enum AccountScope {
     pipeline_read = 21;
     agent = 30;
     agent_read = 31;
+    report_read = 40;
 }
