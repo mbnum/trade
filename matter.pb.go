@@ -8181,6 +8181,69 @@ func (x *AgentGroup) GetAgents() []*Account {
 	return nil
 }
 
+type AgentGroups struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AgentGroups []*AgentGroup `protobuf:"bytes,2,rep,name=agent_groups,json=agentGroups,proto3" json:"agent_groups,omitempty"`
+	Anchor      string        `protobuf:"bytes,3,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	Total       int64         `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *AgentGroups) Reset() {
+	*x = AgentGroups{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[104]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AgentGroups) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AgentGroups) ProtoMessage() {}
+
+func (x *AgentGroups) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[104]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AgentGroups.ProtoReflect.Descriptor instead.
+func (*AgentGroups) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{104}
+}
+
+func (x *AgentGroups) GetAgentGroups() []*AgentGroup {
+	if x != nil {
+		return x.AgentGroups
+	}
+	return nil
+}
+
+func (x *AgentGroups) GetAnchor() string {
+	if x != nil {
+		return x.Anchor
+	}
+	return ""
+}
+
+func (x *AgentGroups) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -9280,9 +9343,16 @@ var file_matter_proto_rawDesc = []byte{
 	0x09, 0x52, 0x08, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x12, 0x26, 0x0a, 0x06, 0x61,
 	0x67, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x0b, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x72,
 	0x61, 0x64, 0x65, 0x2e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x06, 0x61, 0x67, 0x65,
-	0x6e, 0x74, 0x73, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x74, 0x73, 0x22, 0x71, 0x0a, 0x0b, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x73, 0x12, 0x34, 0x0a, 0x0c, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x5f, 0x67, 0x72, 0x6f, 0x75,
+	0x70, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65,
+	0x2e, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x0b, 0x61, 0x67, 0x65,
+	0x6e, 0x74, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6e, 0x63, 0x68,
+	0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72,
+	0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -9297,7 +9367,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 105)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 106)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                          // 0: trade.Msg
 	(*Nothing)(nil),                      // 1: trade.Nothing
@@ -9403,7 +9473,8 @@ var file_matter_proto_goTypes = []interface{}{
 	(*AssignmentUnixHour)(nil),           // 101: trade.AssignmentUnixHour
 	(*Assignment)(nil),                   // 102: trade.Assignment
 	(*AgentGroup)(nil),                   // 103: trade.AgentGroup
-	nil,                                  // 104: trade.Order.FieldsEntry
+	(*AgentGroups)(nil),                  // 104: trade.AgentGroups
+	nil,                                  // 105: trade.Order.FieldsEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	3,   // 0: trade.Param.i:type_name -> trade.IntParam
@@ -9430,7 +9501,7 @@ var file_matter_proto_depIdxs = []int32{
 	13,  // 21: trade.Order.shipments:type_name -> trade.Shipment
 	12,  // 22: trade.Order.payment:type_name -> trade.Payment
 	12,  // 23: trade.Order.payments:type_name -> trade.Payment
-	104, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	105, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	19,  // 25: trade.Order.group:type_name -> trade.OrderGroup
 	17,  // 26: trade.Orders.orders:type_name -> trade.Order
 	21,  // 27: trade.OrderMetrics.metrics:type_name -> trade.OrderMetric
@@ -9487,11 +9558,12 @@ var file_matter_proto_depIdxs = []int32{
 	100, // 78: trade.Assignment.capacity:type_name -> trade.AssignmentAgent
 	101, // 79: trade.Assignment.actual:type_name -> trade.AssignmentUnixHour
 	66,  // 80: trade.AgentGroup.agents:type_name -> trade.Account
-	81,  // [81:81] is the sub-list for method output_type
-	81,  // [81:81] is the sub-list for method input_type
-	81,  // [81:81] is the sub-list for extension type_name
-	81,  // [81:81] is the sub-list for extension extendee
-	0,   // [0:81] is the sub-list for field type_name
+	103, // 81: trade.AgentGroups.agent_groups:type_name -> trade.AgentGroup
+	82,  // [82:82] is the sub-list for method output_type
+	82,  // [82:82] is the sub-list for method input_type
+	82,  // [82:82] is the sub-list for extension type_name
+	82,  // [82:82] is the sub-list for extension extendee
+	0,   // [0:82] is the sub-list for field type_name
 }
 
 func init() { file_matter_proto_init() }
@@ -10748,6 +10820,18 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[104].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AgentGroups); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -10755,7 +10839,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   105,
+			NumMessages:   106,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

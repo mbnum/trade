@@ -965,3 +965,9 @@ message AgentGroup {
     repeated string agent_ids = 10;
     repeated Account agents = 11; // derived
 }
+
+message AgentGroups {
+    repeated AgentGroup agent_groups = 2;
+    string anchor = 3;
+    int64 total = 4;
+}
