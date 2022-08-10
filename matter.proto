@@ -952,3 +952,16 @@ message Assignment {
     repeated AssignmentUnixHour actual = 4;
     bool assign_on_create = 5;
 }
+
+message AgentGroup {
+    string account_id = 2;
+    string id = 3;
+    string created_by = 4;
+    int64 created = 5;
+    string updated_by = 6;
+    int64 updated = 7;
+    string name = 8;
+    string logo_url = 9;
+    repeated string agent_ids = 10;
+    repeated Account agents = 11; // derived
+}

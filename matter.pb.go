@@ -8062,6 +8062,125 @@ func (x *Assignment) GetAssignOnCreate() bool {
 	return false
 }
 
+type AgentGroup struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AccountId string     `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	Id        string     `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedBy string     `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	Created   int64      `protobuf:"varint,5,opt,name=created,proto3" json:"created,omitempty"`
+	UpdatedBy string     `protobuf:"bytes,6,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
+	Updated   int64      `protobuf:"varint,7,opt,name=updated,proto3" json:"updated,omitempty"`
+	Name      string     `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	LogoUrl   string     `protobuf:"bytes,9,opt,name=logo_url,json=logoUrl,proto3" json:"logo_url,omitempty"`
+	AgentIds  []string   `protobuf:"bytes,10,rep,name=agent_ids,json=agentIds,proto3" json:"agent_ids,omitempty"`
+	Agents    []*Account `protobuf:"bytes,11,rep,name=agents,proto3" json:"agents,omitempty"` // derived
+}
+
+func (x *AgentGroup) Reset() {
+	*x = AgentGroup{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[103]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AgentGroup) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AgentGroup) ProtoMessage() {}
+
+func (x *AgentGroup) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[103]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AgentGroup.ProtoReflect.Descriptor instead.
+func (*AgentGroup) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{103}
+}
+
+func (x *AgentGroup) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetCreatedBy() string {
+	if x != nil {
+		return x.CreatedBy
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetCreated() int64 {
+	if x != nil {
+		return x.Created
+	}
+	return 0
+}
+
+func (x *AgentGroup) GetUpdatedBy() string {
+	if x != nil {
+		return x.UpdatedBy
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+func (x *AgentGroup) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetLogoUrl() string {
+	if x != nil {
+		return x.LogoUrl
+	}
+	return ""
+}
+
+func (x *AgentGroup) GetAgentIds() []string {
+	if x != nil {
+		return x.AgentIds
+	}
+	return nil
+}
+
+func (x *AgentGroup) GetAgents() []*Account {
+	if x != nil {
+		return x.Agents
+	}
+	return nil
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -9142,10 +9261,28 @@ var file_matter_proto_rawDesc = []byte{
 	0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x55, 0x6e, 0x69, 0x78, 0x48, 0x6f, 0x75, 0x72, 0x52, 0x06, 0x61,
 	0x63, 0x74, 0x75, 0x61, 0x6c, 0x12, 0x28, 0x0a, 0x10, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e, 0x5f,
 	0x6f, 0x6e, 0x5f, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x0e, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e, 0x4f, 0x6e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42,
-	0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x62,
-	0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x0e, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e, 0x4f, 0x6e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x22,
+	0xa1, 0x02, 0x0a, 0x0a, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1d,
+	0x0a, 0x0a, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1d, 0x0a,
+	0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x18, 0x0a, 0x07,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x64, 0x5f, 0x62, 0x79, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x75, 0x72, 0x6c, 0x18,
+	0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6c, 0x6f, 0x67, 0x6f, 0x55, 0x72, 0x6c, 0x12, 0x1b,
+	0x0a, 0x09, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x0a, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x08, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x12, 0x26, 0x0a, 0x06, 0x61,
+	0x67, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x0b, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x72,
+	0x61, 0x64, 0x65, 0x2e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x06, 0x61, 0x67, 0x65,
+	0x6e, 0x74, 0x73, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -9160,7 +9297,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 104)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 105)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                          // 0: trade.Msg
 	(*Nothing)(nil),                      // 1: trade.Nothing
@@ -9265,7 +9402,8 @@ var file_matter_proto_goTypes = []interface{}{
 	(*AssignmentAgent)(nil),              // 100: trade.AssignmentAgent
 	(*AssignmentUnixHour)(nil),           // 101: trade.AssignmentUnixHour
 	(*Assignment)(nil),                   // 102: trade.Assignment
-	nil,                                  // 103: trade.Order.FieldsEntry
+	(*AgentGroup)(nil),                   // 103: trade.AgentGroup
+	nil,                                  // 104: trade.Order.FieldsEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	3,   // 0: trade.Param.i:type_name -> trade.IntParam
@@ -9292,7 +9430,7 @@ var file_matter_proto_depIdxs = []int32{
 	13,  // 21: trade.Order.shipments:type_name -> trade.Shipment
 	12,  // 22: trade.Order.payment:type_name -> trade.Payment
 	12,  // 23: trade.Order.payments:type_name -> trade.Payment
-	103, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	104, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	19,  // 25: trade.Order.group:type_name -> trade.OrderGroup
 	17,  // 26: trade.Orders.orders:type_name -> trade.Order
 	21,  // 27: trade.OrderMetrics.metrics:type_name -> trade.OrderMetric
@@ -9348,11 +9486,12 @@ var file_matter_proto_depIdxs = []int32{
 	100, // 77: trade.AssignmentUnixHour.agents:type_name -> trade.AssignmentAgent
 	100, // 78: trade.Assignment.capacity:type_name -> trade.AssignmentAgent
 	101, // 79: trade.Assignment.actual:type_name -> trade.AssignmentUnixHour
-	80,  // [80:80] is the sub-list for method output_type
-	80,  // [80:80] is the sub-list for method input_type
-	80,  // [80:80] is the sub-list for extension type_name
-	80,  // [80:80] is the sub-list for extension extendee
-	0,   // [0:80] is the sub-list for field type_name
+	66,  // 80: trade.AgentGroup.agents:type_name -> trade.Account
+	81,  // [81:81] is the sub-list for method output_type
+	81,  // [81:81] is the sub-list for method input_type
+	81,  // [81:81] is the sub-list for extension type_name
+	81,  // [81:81] is the sub-list for extension extendee
+	0,   // [0:81] is the sub-list for field type_name
 }
 
 func init() { file_matter_proto_init() }
@@ -10597,6 +10736,18 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[103].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AgentGroup); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -10604,7 +10755,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   104,
+			NumMessages:   105,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
