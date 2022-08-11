@@ -849,6 +849,7 @@ message Key {
     string order_id = 4;
     string product_id = 5;
     string user_id = 6;
+    repeated string agent_ids = 50;
 }
 
 message Webhook {

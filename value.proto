@@ -32,4 +32,5 @@ enum AccountScope {
     agent = 30;
     agent_read = 31;
     report_read = 40;
+    agent_group = 50;
 }
