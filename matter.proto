@@ -940,6 +940,8 @@ message Agents {
 message AssignmentAgent {
     string agent_id = 2;
     int64 order_count = 3;
+    repeated string product_id = 4;
+    repeated string action_id = 5;
 }
 
 message AssignmentUnixHour {
