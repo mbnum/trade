@@ -432,7 +432,6 @@ message OrderChangeLog {
     int64 end_at = 10;
     string error = 5; // 400(invalid, require), 300, 500
     OrderChangeRequest in = 6;
-    string by = 13;
     Order src = 7; // diff only
     Order dst = 8; // diff only
 }
