@@ -974,3 +974,25 @@ message AgentGroups {
     string anchor = 3;
     int64 total = 4;
 }
+
+message SendGridContent {
+    string type = 2;
+    string value = 3;
+}
+
+message SendGridEmail {
+    string email = 2;
+}
+
+message SendGridPersonalization {
+    repeated SendGridEmail to = 2;
+    string subject = 3;
+    map<string, string> dynamic_template_data = 4;
+}
+
+message SendMailSendGridReq {
+    repeated SendGridPersonalization personalizations = 2;
+    SendGridEmail from  = 3;
+    repeated SendGridContent content = 4;
+    string template_id = 5;
+}
