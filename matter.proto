@@ -390,6 +390,7 @@ message OrderChangeRequest {
     Sms sms = 10;
     Lead lead = 11;
     Order order = 12;
+    SendMailSendGridReq mail_send_grid = 13;
 }
 
 // TODO classify by email or phone number
