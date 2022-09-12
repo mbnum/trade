@@ -743,6 +743,7 @@ message Account {
     string encrypted_password = 10;
     string avatar_url = 12;
     repeated string scopes = 18;
+    map<string, string> kvm = 19;
 }
 
 message WebBrowser {
