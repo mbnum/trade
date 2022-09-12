@@ -241,6 +241,8 @@ message OrderMetric {
     string paid_date = 9; // derived
     int64 issue_hour = 6;
     string issue_date = 7; // derived
+    int64 assigned_hour = 22;
+    string assigned_date = 23; // derived
 
     string pos_id = 12;
     string channel = 13; // TODO
@@ -277,6 +279,8 @@ message OrderMetricsRequest {
     int64 paid_hour_to = 14;
     int64 created_hour_from = 25;
     int64 created_hour_to = 26;
+    int64 assigned_hour_from = 27;
+    int64 assigned_hour_to = 28;
     repeated string channels = 15;
     repeated string not_channels = 16;
     repeated string product_ids = 18; // and
