@@ -379,6 +379,7 @@ message OrdersRequest {
     int64 action_created_hour_to = 41;
 
     repeated Param extra = 42;
+    repeated string product_ids = 43; // of extra
 }
 
 // e.g. call, contact, booking, feedback...
@@ -947,8 +948,7 @@ message Agents {
 message AssignmentAgent {
     string agent_id = 2;
     int64 order_count = 3;
-    repeated string product_ids = 4;
-    repeated string action_ids = 5;
+    OrdersRequest condition = 6;
 }
 
 message AssignmentUnixHour {
