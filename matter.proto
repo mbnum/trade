@@ -809,6 +809,7 @@ message Account {
     string avatar_url = 12;
     repeated string scopes = 18;
     map<string, string> kvm = 19;
+    map<string, int32> actionm = 20;
 }
 
 message WebBrowser {
