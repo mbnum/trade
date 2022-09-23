@@ -229,6 +229,70 @@ message OrderGroup {
     int32 priority = 7;
 }
 
+message OrderCohortMetrics {
+    repeated OrderCohortMetric metrics = 2;
+}
+
+message OrderCohortMetric {
+    string account_id = 2;
+    int64 created_hour = 3;
+    string created_date = 4; // derived
+    int64 total = 5;
+    string channel = 6;
+    string seller_id = 7;
+    int64 product_id_bits = 8; // only system
+    string product_id_strings = 9; // only system
+    repeated string product_ids = 10;
+    string product_id = 11; // derived
+
+    int64 hour1 = 21;
+    int64 hour2 = 22;
+    int64 hour3 = 23;
+    int64 hour4 = 24;
+    int64 hour5 = 25;
+    int64 hour6 = 26;
+    int64 hour7 = 27;
+    int64 hour8 = 28;
+    int64 hour9 = 29;
+    int64 hour10 = 30;
+    int64 hour11 = 31;
+    int64 hour12 = 32;
+    int64 hour13 = 33;
+    int64 hour14 = 34;
+    int64 hour15 = 35;
+    int64 hour16 = 36;
+
+    int64 order_count = 50;
+    int64 order_count1 = 51;
+    int64 order_count2 = 52;
+    int64 order_count3 = 53;
+    int64 order_count4 = 54;
+    int64 order_count5 = 55;
+    int64 order_count6 = 56;
+    int64 order_count7 = 57;
+    int64 order_count8 = 58;
+    int64 order_count9 = 59;
+    int64 order_count10 = 60;
+    int64 order_count11 = 61;
+    int64 order_count12 = 62;
+    int64 order_count13 = 63;
+    int64 order_count14 = 64;
+    int64 order_count15 = 65;
+    int64 order_count16 = 66;
+}
+
+message OrderCohortMetricsRequest {
+    string dim = 2;
+    int32 tz = 3;
+    string account_id = 10;
+    int64 created_hour_from = 25;
+    int64 created_hour_to = 26;
+    repeated string channels = 15;
+    repeated string not_channels = 16;
+    repeated string product_ids = 18; // and
+    repeated string seller_ids = 19; // and, agent ids
+}
+
 message OrderMetrics {
     repeated OrderMetric metrics = 2;
 }
