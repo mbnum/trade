@@ -254,31 +254,27 @@ message OrderCohortMetric {
     int64 hour7 = 27;
     int64 hour8 = 28;
     int64 hour9 = 29;
-    int64 hour10 = 30;
-    int64 hour11 = 31;
-    int64 hour12 = 32;
-    int64 hour13 = 33;
-    int64 hour14 = 34;
-    int64 hour15 = 35;
-    int64 hour16 = 36;
 
     int64 order_count = 50;
-    int64 order_count1 = 51;
-    int64 order_count2 = 52;
-    int64 order_count3 = 53;
-    int64 order_count4 = 54;
-    int64 order_count5 = 55;
-    int64 order_count6 = 56;
-    int64 order_count7 = 57;
-    int64 order_count8 = 58;
-    int64 order_count9 = 59;
-    int64 order_count10 = 60;
-    int64 order_count11 = 61;
-    int64 order_count12 = 62;
-    int64 order_count13 = 63;
-    int64 order_count14 = 64;
-    int64 order_count15 = 65;
-    int64 order_count16 = 66;
+    int64 total_sum = 51; // derived
+    int64 order_count1 = 52;
+    int64 total_sum1 = 53; // derived
+    int64 order_count2 = 54;
+    int64 total_sum2 = 55; // derived
+    int64 order_count3 = 56;
+    int64 total_sum3 = 57; // derived
+    int64 order_count4 = 58;
+    int64 total_sum4 = 59; // derived
+    int64 order_count5 = 60;
+    int64 total_sum5 = 61; // derived
+    int64 order_count6 = 62;
+    int64 total_sum6 = 63; // derived
+    int64 order_count7 = 64;
+    int64 total_sum7 = 65; // derived
+    int64 order_count8 = 66;
+    int64 total_sum8 = 67; // derived
+    int64 order_count9 = 68;
+    int64 total_sum9 = 69; // derived
 }
 
 message OrderCohortMetricsRequest {
