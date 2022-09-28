@@ -157,10 +157,10 @@ message Order {
     string pipeline_id = 27;
     string pipeline_hash = 36;
     string mode = 29; // debug, strategy
-    int64 action_head = 31;
+    int64 action_head = 31; // only system
     OrderActionrun actionrun = 32; // level
     repeated OrderActionrun actionruns = 48; // derived
-    int64 log_head = 49;
+    int64 log_head = 49; // only system
 
     OrderBuyer buyer = 22;
     OrderSeller seller = 23;
@@ -771,6 +771,7 @@ message Context {
 
     // where
     WebBrowser web_browser = 40;
+    HttpApi http_api = 41;
 
     // when
     repeated Reqrun reqruns = 60;
@@ -818,6 +819,10 @@ message WebBrowser {
     string platform = 7;
     string url = 8; // page url
     string referral_url = 9; // prev url
+}
+
+message HttpApi {
+    string func_name = 2;
 }
 
 // TODO in-active
