@@ -253,14 +253,23 @@ message OrderCohortMetric {
     string product_id = 11; // derived
 
     int64 hour1 = 21;
+    string hour1_date = 30; // derived
     int64 hour2 = 22;
+    string hour2_date = 31; // derived
     int64 hour3 = 23;
+    string hour3_date = 32; // derived
     int64 hour4 = 24;
+    string hour4_date = 33; // derived
     int64 hour5 = 25;
+    string hour5_date = 34; // derived
     int64 hour6 = 26;
+    string hour6_date = 35; // derived
     int64 hour7 = 27;
+    string hour7_date = 36; // derived
     int64 hour8 = 28;
+    string hour8_date = 37; // derived
     int64 hour9 = 29;
+    string hour9_date = 38; // derived
 
     int64 order_count = 50;
     int64 total_sum = 51; // derived
