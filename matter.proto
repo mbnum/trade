@@ -229,8 +229,15 @@ message OrderGroup {
     int32 priority = 7;
 }
 
+message OrderCohortCreatedDates {
+    repeated OrderCohortMetrics metrics = 2;
+}
+
 message OrderCohortMetrics {
     repeated OrderCohortMetric metrics = 2;
+    int64 created_hour = 3; // only with created_hour, date, hour dim
+    string created_date = 4; // only with date dim
+    int64 order_count = 5; // total of metrics
 }
 
 message OrderCohortMetric {
