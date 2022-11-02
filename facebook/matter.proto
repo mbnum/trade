@@ -8,3 +8,295 @@ message Facebook {
 }
 
 // TODO should use other repo
+
+message Page {
+    string id = 1;
+    string account_id = 2;
+    int64 created = 3;
+    string name = 4;
+    string avatar_url = 5;
+    string access_token = 6;
+}
+
+message WebhookEvent {
+    string object = 1; // instagram, page
+    repeated Entry entry = 2;
+}
+
+message Entry {
+	string id = 1;
+	int64 time = 2;
+	repeated Messaging messaging = 3;
+	repeated Change changes = 4;
+	repeated Messaging standby = 5;
+}
+
+message Change {
+	string field = 1; // feed, comments
+	ChangeValue value = 2;
+}
+
+message FbFrom {
+	string id = 1;
+	string from = 2;
+	string username = 3;
+}
+
+message ChangeValue {
+	int64 edited_time = 3;
+	FbFrom from = 4;
+	Post post = 5;
+	bool is_hidden = 6;
+	string link = 7;
+	string message = 8;
+	string photo = 9;
+	repeated string photos = 10;
+	string post_id = 11;
+	string story = 12;
+	string title = 13;
+	string video = 14;
+	string video_flag_reason = 15;
+	string action = 16;
+	string album_id = 17;
+	string comment_id = 18;
+	int64 created_time = 19;
+	string event_id = 20;
+	string item = 21;
+	string open_graph_story_id = 22;
+	string parent_id = 23;
+	string photo_id = 24;
+	string reaction_type = 25;
+	int32 published = 26;
+	string recipient_id = 27;
+	string share_id = 28;
+	string verb = 29; // remove
+	string video_id = 30;
+	IgMedia media = 31;
+	string id = 32;
+	string text = 33;
+	string media_id = 34;
+}
+
+
+message IgMedia {
+	string id = 2;
+	string media_product_type = 1;
+}
+
+message Post {
+	string status_type = 1;
+	bool is_published = 2;
+	string updated_time = 3;
+	string permalink_url = 4;
+	string promotion_status = 5;
+	string id = 6;
+}
+
+message Messaging {
+	Sender sender = 1;
+	Recipient recipient = 2;
+	int64 timestamp = 3;
+	Message message = 4;
+	Delivery delivery = 5;
+	string message_type = 6;
+	string sender_action = 7; // typing_on, typing_off, mark_seen
+	Read read = 8;
+	Postback postback = 9;
+	Referral referral = 10;
+	string tag = 11; // HUMAN_AGENT
+	Reaction reaction = 12;
+}
+
+message Postback {
+	string payload = 2;
+	Referral referral = 3;
+	string title = 4;
+	string mid = 5;
+}
+
+
+message Referral {
+	string ref = 2;
+	string source = 3; // SHORTLINK, ADS
+	string type = 4; // OPEN_THREAD
+	AdsContextData ads_context_data = 5;
+	string ad_id = 6;
+	string referer_uri = 7;
+}
+
+
+message AdsContextData {
+	string photo_url = 1;
+	string post_id = 2;
+	string ad_title = 3;
+	string video_url = 4;
+	string product_id = 5;
+}
+
+message Reaction {
+	string mid = 1;
+	string action = 2;
+	string reaction = 3;
+	string emoji = 4;
+}
+
+message Read {
+	int64 watermark = 1;
+	int32 seq = 2;
+}
+
+message Delivery {
+    repeated string mids = 1;
+    int64 watermark = 2;
+    int32 seq = 3;
+}
+
+message Sender {
+	string id = 1;
+	string user_ref = 2;
+}
+
+// https://developers.facebook.com/docs/messenger-platform/discovery/private-replies
+message Recipient {
+	string id = 1;
+	string post_id = 2;
+	string comment_id = 3;
+	string user_ref = 4;
+}
+
+message Message {
+	string mid = 2;
+	string text = 3;
+	repeated Attachment attachments = 4;
+	Read read = 5;
+	Attachment attachment = 6;
+	bool is_echo = 7;
+	int64 app_id = 8;
+	string metadata = 9;
+	repeated QuickReply quick_replies = 10;
+	QuickReply quick_reply = 11; // response from fb
+	string is_supported = 12;
+	bool is_deleted = 13;
+	ReplyTo reply_to = 14;
+
+	MessageRef referral = 15;
+}
+
+message MessageRef {
+	Product product = 1;
+}
+
+message Product {
+	string id = 1;
+	string retailer_id = 2;
+	string image_url = 3;
+	string title = 4;
+	string subtitle = 5;
+}
+
+
+message Attachment {
+	string type = 1; // template, fallback
+	FbPayload payload = 2;
+	string title = 3;
+	string URL = 4;
+}
+
+
+message FbPayload {
+	string url = 2;
+	bool is_reuseable = 3;
+	string template_type = 4;
+	bool sharable = 5;
+	repeated GenericElement elements = 6;
+	string text = 7; // for call btn
+	repeated Button buttons = 8;
+
+	Address address = 10;
+	Summary summary = 11;
+	repeated Adjustment adjustments = 12;
+
+	string recipient_name = 13;
+	string order_number = 14;
+	string currency = 15;
+	string payment_method = 16;
+	string order_url = 17;
+	string timestamp = 18;
+	Products product = 19;
+
+	string title = 20;
+	// string sticker_id = 21; must be int64
+}
+
+message Summary {
+	float subtotal = 1;
+	float shipping_cost = 2;
+	float total_tax = 3;
+	float total_cost = 4;
+}
+
+message Adjustment {
+	string name = 1;
+	float amount = 2;
+}
+
+message Address {
+	string street_1 = 2;
+	string street_2 = 3;
+	string city = 4;
+	string postal_code = 5;
+	string state = 6;
+	string country = 7;
+}
+
+
+message Button {
+	string type = 2; // web_url, postback
+	string title = 3;
+	string payload = 4;
+
+	string url = 5;
+	string webview_height_ratio = 6; // <compact|tall|full>
+	bool messenger_extensions = 7; // <true|false>
+	string fallback_url = 8; //<URL_TO_FALLBACK_TO>"
+	string webview_share_button = 9;
+}
+
+message Action {
+	string type = 2;
+	string url = 3;
+}
+
+message GenericElement {
+	string title = 2;
+	string item_url = 3;
+	string image_url = 4;
+	string subtitle = 5;
+	Action default_action = 6;
+	string id = 7; // fbproduct id
+	repeated Button buttons = 8;
+	int64 quantity = 9;
+	string currency = 10;
+	float price = 11;
+}
+
+message Products {
+	repeated Product elements = 3;
+}
+
+message QuickReply {
+	string content_type = 2; // text
+	string title = 3;
+	string payload = 4;
+	string image_url = 5;
+}
+
+message ReplyTo {
+	string mid = 4;
+	ReplyStory story = 5;
+}
+
+message ReplyStory {
+	string url = 5;
+	string id = 6;
+}
