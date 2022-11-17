@@ -77,7 +77,6 @@ message ChangeValue {
 	string media_id = 34;
 }
 
-
 message IgMedia {
 	string id = 2;
 	string media_product_type = 1;
@@ -114,7 +113,6 @@ message Postback {
 	string mid = 5;
 }
 
-
 message Referral {
 	string ref = 2;
 	string source = 3; // SHORTLINK, ADS
@@ -123,7 +121,6 @@ message Referral {
 	string ad_id = 6;
 	string referer_uri = 7;
 }
-
 
 message AdsContextData {
 	string photo_url = 1;
@@ -178,7 +175,6 @@ message Message {
 	string is_supported = 12;
 	bool is_deleted = 13;
 	ReplyTo reply_to = 14;
-
 	MessageRef referral = 15;
 }
 
@@ -194,14 +190,12 @@ message Product {
 	string subtitle = 5;
 }
 
-
 message Attachment {
 	string type = 1; // template, fallback
 	FbPayload payload = 2;
 	string title = 3;
 	string URL = 4;
 }
-
 
 message FbPayload {
 	string url = 2;
@@ -248,7 +242,6 @@ message Address {
 	string state = 6;
 	string country = 7;
 }
-
 
 message Button {
 	string type = 2; // web_url, postback
