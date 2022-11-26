@@ -185,6 +185,7 @@ message Order {
     int64 issue_date = 62; // import case
     int64 dealed = 26;
     int64 due_date = 34;
+    int64 recreated = 66;
 
     Shipment shipment = 44;
     repeated Shipment shipments = 45;
