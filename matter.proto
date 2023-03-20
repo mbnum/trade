@@ -1116,3 +1116,9 @@ message MessageAction {
     int64 created = 4;
     string desc = 5;
 }
+
+message Messages {
+    repeated Message messages = 2;
+    string anchor = 3;
+    int64 total = 4;
+}

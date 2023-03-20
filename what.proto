@@ -13,4 +13,10 @@ service Hello {
 service Textme {
     rpc Ping(Msg) returns (Nothing);
     rpc Send(Message) returns (Message);
+
+    rpc ReadTemplate(Key) returns (Message);
+    rpc ListTemplates(ListRequest) returns (Messages);
+    rpc CreateTemplate(Message) returns (Message);
+    rpc DeleteTemplate(Key) returns (Nothing);
+    rpc UpdateTemplate(Message) returns (Message);
 };
