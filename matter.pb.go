@@ -9283,6 +9283,220 @@ func (x *SendMailSendGridReq) GetTemplateId() string {
 	return ""
 }
 
+type Message struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Channel     string           `protobuf:"bytes,2,opt,name=channel,proto3" json:"channel,omitempty"`
+	Metadata    []*KV            `protobuf:"bytes,16,rep,name=metadata,proto3" json:"metadata,omitempty"` // header
+	Text        string           `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+	TextFormat  string           `protobuf:"bytes,4,opt,name=text_format,json=textFormat,proto3" json:"text_format,omitempty"`    // plaintext, html, markdown
+	TemplateId  string           `protobuf:"bytes,14,opt,name=template_id,json=templateId,proto3" json:"template_id,omitempty"`   // ui component (text-format, quick-reply, mail, product, file, img...)
+	Template    string           `protobuf:"bytes,5,opt,name=template,proto3" json:"template,omitempty"`                          // e.g delta, erb, haml, php
+	TemplateVar []*KV            `protobuf:"bytes,7,rep,name=template_var,json=templateVar,proto3" json:"template_var,omitempty"` // email subject
+	Id          string           `protobuf:"bytes,8,opt,name=id,proto3" json:"id,omitempty"`
+	Ref         []*KV            `protobuf:"bytes,13,rep,name=ref,proto3" json:"ref,omitempty"` // reply-to, bcc
+	From        string           `protobuf:"bytes,10,opt,name=from,proto3" json:"from,omitempty"`
+	Tos         []string         `protobuf:"bytes,12,rep,name=tos,proto3" json:"tos,omitempty"` // to, cc
+	Created     string           `protobuf:"bytes,11,opt,name=created,proto3" json:"created,omitempty"`
+	Actions     []*MessageAction `protobuf:"bytes,15,rep,name=actions,proto3" json:"actions,omitempty"`
+}
+
+func (x *Message) Reset() {
+	*x = Message{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[114]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Message) ProtoMessage() {}
+
+func (x *Message) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[114]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Message.ProtoReflect.Descriptor instead.
+func (*Message) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{114}
+}
+
+func (x *Message) GetChannel() string {
+	if x != nil {
+		return x.Channel
+	}
+	return ""
+}
+
+func (x *Message) GetMetadata() []*KV {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *Message) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+func (x *Message) GetTextFormat() string {
+	if x != nil {
+		return x.TextFormat
+	}
+	return ""
+}
+
+func (x *Message) GetTemplateId() string {
+	if x != nil {
+		return x.TemplateId
+	}
+	return ""
+}
+
+func (x *Message) GetTemplate() string {
+	if x != nil {
+		return x.Template
+	}
+	return ""
+}
+
+func (x *Message) GetTemplateVar() []*KV {
+	if x != nil {
+		return x.TemplateVar
+	}
+	return nil
+}
+
+func (x *Message) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Message) GetRef() []*KV {
+	if x != nil {
+		return x.Ref
+	}
+	return nil
+}
+
+func (x *Message) GetFrom() string {
+	if x != nil {
+		return x.From
+	}
+	return ""
+}
+
+func (x *Message) GetTos() []string {
+	if x != nil {
+		return x.Tos
+	}
+	return nil
+}
+
+func (x *Message) GetCreated() string {
+	if x != nil {
+		return x.Created
+	}
+	return ""
+}
+
+func (x *Message) GetActions() []*MessageAction {
+	if x != nil {
+		return x.Actions
+	}
+	return nil
+}
+
+type MessageAction struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type    string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	By      string `protobuf:"bytes,3,opt,name=by,proto3" json:"by,omitempty"`
+	Created int64  `protobuf:"varint,4,opt,name=created,proto3" json:"created,omitempty"`
+	Desc    string `protobuf:"bytes,5,opt,name=desc,proto3" json:"desc,omitempty"`
+}
+
+func (x *MessageAction) Reset() {
+	*x = MessageAction{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[115]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MessageAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessageAction) ProtoMessage() {}
+
+func (x *MessageAction) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[115]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessageAction.ProtoReflect.Descriptor instead.
+func (*MessageAction) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{115}
+}
+
+func (x *MessageAction) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *MessageAction) GetBy() string {
+	if x != nil {
+		return x.By
+	}
+	return ""
+}
+
+func (x *MessageAction) GetCreated() int64 {
+	if x != nil {
+		return x.Created
+	}
+	return 0
+}
+
+func (x *MessageAction) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -10594,9 +10808,40 @@ var file_matter_proto_rawDesc = []byte{
 	0x53, 0x65, 0x6e, 0x64, 0x47, 0x72, 0x69, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x52,
 	0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x65, 0x6d, 0x70,
 	0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74,
-	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74,
-	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72,
-	0x61, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x22, 0x87, 0x03, 0x0a, 0x07, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12,
+	0x25, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x10, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x09, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x4b, 0x56, 0x52, 0x08, 0x6d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x65,
+	0x78, 0x74, 0x5f, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x74, 0x65, 0x78, 0x74, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74,
+	0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08,
+	0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x2c, 0x0a, 0x0c, 0x74, 0x65, 0x6d, 0x70,
+	0x6c, 0x61, 0x74, 0x65, 0x5f, 0x76, 0x61, 0x72, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x09,
+	0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x4b, 0x56, 0x52, 0x0b, 0x74, 0x65, 0x6d, 0x70, 0x6c,
+	0x61, 0x74, 0x65, 0x56, 0x61, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x08, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1b, 0x0a, 0x03, 0x72, 0x65, 0x66, 0x18, 0x0d, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x4b, 0x56, 0x52, 0x03,
+	0x72, 0x65, 0x66, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x0a, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x6f, 0x73, 0x18, 0x0c,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x03, 0x74, 0x6f, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x64, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x12, 0x2e, 0x0a, 0x07, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x0f,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x61, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x22, 0x61, 0x0a, 0x0d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x41, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x62, 0x79, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x62, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x65, 0x73, 0x63, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -10611,7 +10856,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 118)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 120)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                          // 0: trade.Msg
 	(*Nothing)(nil),                      // 1: trade.Nothing
@@ -10727,10 +10972,12 @@ var file_matter_proto_goTypes = []interface{}{
 	(*SendGridEmail)(nil),                // 111: trade.SendGridEmail
 	(*SendGridPersonalization)(nil),      // 112: trade.SendGridPersonalization
 	(*SendMailSendGridReq)(nil),          // 113: trade.SendMailSendGridReq
-	nil,                                  // 114: trade.Order.FieldsEntry
-	nil,                                  // 115: trade.Account.KvmEntry
-	nil,                                  // 116: trade.Account.ActionmEntry
-	nil,                                  // 117: trade.SendGridPersonalization.DynamicTemplateDataEntry
+	(*Message)(nil),                      // 114: trade.Message
+	(*MessageAction)(nil),                // 115: trade.MessageAction
+	nil,                                  // 116: trade.Order.FieldsEntry
+	nil,                                  // 117: trade.Account.KvmEntry
+	nil,                                  // 118: trade.Account.ActionmEntry
+	nil,                                  // 119: trade.SendGridPersonalization.DynamicTemplateDataEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	3,   // 0: trade.Param.i:type_name -> trade.IntParam
@@ -10757,7 +11004,7 @@ var file_matter_proto_depIdxs = []int32{
 	13,  // 21: trade.Order.shipments:type_name -> trade.Shipment
 	12,  // 22: trade.Order.payment:type_name -> trade.Payment
 	12,  // 23: trade.Order.payments:type_name -> trade.Payment
-	114, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	116, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	19,  // 25: trade.Order.group:type_name -> trade.OrderGroup
 	17,  // 26: trade.Orders.orders:type_name -> trade.Order
 	21,  // 27: trade.OrderCohortCreatedDates.metrics:type_name -> trade.OrderCohortMetrics
@@ -10807,8 +11054,8 @@ var file_matter_proto_depIdxs = []int32{
 	72,  // 71: trade.Context.http_api:type_name -> trade.HttpApi
 	69,  // 72: trade.Context.reqruns:type_name -> trade.Reqrun
 	70,  // 73: trade.Account.others:type_name -> trade.Account
-	115, // 74: trade.Account.kvm:type_name -> trade.Account.KvmEntry
-	116, // 75: trade.Account.actionm:type_name -> trade.Account.ActionmEntry
+	117, // 74: trade.Account.kvm:type_name -> trade.Account.KvmEntry
+	118, // 75: trade.Account.actionm:type_name -> trade.Account.ActionmEntry
 	78,  // 76: trade.UserAction.email:type_name -> trade.UserActionEmail
 	87,  // 77: trade.Addresses.addresses:type_name -> trade.Address
 	88,  // 78: trade.Address.ghn:type_name -> trade.GHNAddress
@@ -10823,15 +11070,19 @@ var file_matter_proto_depIdxs = []int32{
 	70,  // 87: trade.AgentGroup.agents:type_name -> trade.Account
 	108, // 88: trade.AgentGroups.agent_groups:type_name -> trade.AgentGroup
 	111, // 89: trade.SendGridPersonalization.to:type_name -> trade.SendGridEmail
-	117, // 90: trade.SendGridPersonalization.dynamic_template_data:type_name -> trade.SendGridPersonalization.DynamicTemplateDataEntry
+	119, // 90: trade.SendGridPersonalization.dynamic_template_data:type_name -> trade.SendGridPersonalization.DynamicTemplateDataEntry
 	112, // 91: trade.SendMailSendGridReq.personalizations:type_name -> trade.SendGridPersonalization
 	111, // 92: trade.SendMailSendGridReq.from:type_name -> trade.SendGridEmail
 	110, // 93: trade.SendMailSendGridReq.content:type_name -> trade.SendGridContent
-	94,  // [94:94] is the sub-list for method output_type
-	94,  // [94:94] is the sub-list for method input_type
-	94,  // [94:94] is the sub-list for extension type_name
-	94,  // [94:94] is the sub-list for extension extendee
-	0,   // [0:94] is the sub-list for field type_name
+	66,  // 94: trade.Message.metadata:type_name -> trade.KV
+	66,  // 95: trade.Message.template_var:type_name -> trade.KV
+	66,  // 96: trade.Message.ref:type_name -> trade.KV
+	115, // 97: trade.Message.actions:type_name -> trade.MessageAction
+	98,  // [98:98] is the sub-list for method output_type
+	98,  // [98:98] is the sub-list for method input_type
+	98,  // [98:98] is the sub-list for extension type_name
+	98,  // [98:98] is the sub-list for extension extendee
+	0,   // [0:98] is the sub-list for field type_name
 }
 
 func init() { file_matter_proto_init() }
@@ -12208,6 +12459,30 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[114].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Message); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_matter_proto_msgTypes[115].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MessageAction); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -12215,7 +12490,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   118,
+			NumMessages:   120,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
