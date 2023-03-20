@@ -99,3 +99,125 @@ var Hello_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "what.proto",
 }
+
+// TextmeClient is the client API for Textme service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TextmeClient interface {
+	Ping(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Nothing, error)
+	Send(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
+}
+
+type textmeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTextmeClient(cc grpc.ClientConnInterface) TextmeClient {
+	return &textmeClient{cc}
+}
+
+func (c *textmeClient) Ping(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Nothing, error) {
+	out := new(Nothing)
+	err := c.cc.Invoke(ctx, "/trade.Textme/Ping", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *textmeClient) Send(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
+	out := new(Message)
+	err := c.cc.Invoke(ctx, "/trade.Textme/Send", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TextmeServer is the server API for Textme service.
+// All implementations must embed UnimplementedTextmeServer
+// for forward compatibility
+type TextmeServer interface {
+	Ping(context.Context, *Msg) (*Nothing, error)
+	Send(context.Context, *Message) (*Message, error)
+	mustEmbedUnimplementedTextmeServer()
+}
+
+// UnimplementedTextmeServer must be embedded to have forward compatible implementations.
+type UnimplementedTextmeServer struct {
+}
+
+func (UnimplementedTextmeServer) Ping(context.Context, *Msg) (*Nothing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (UnimplementedTextmeServer) Send(context.Context, *Message) (*Message, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
+}
+func (UnimplementedTextmeServer) mustEmbedUnimplementedTextmeServer() {}
+
+// UnsafeTextmeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TextmeServer will
+// result in compilation errors.
+type UnsafeTextmeServer interface {
+	mustEmbedUnimplementedTextmeServer()
+}
+
+func RegisterTextmeServer(s grpc.ServiceRegistrar, srv TextmeServer) {
+	s.RegisterService(&Textme_ServiceDesc, srv)
+}
+
+func _Textme_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Msg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TextmeServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Textme/Ping",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TextmeServer).Ping(ctx, req.(*Msg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Textme_Send_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Message)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TextmeServer).Send(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Textme/Send",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TextmeServer).Send(ctx, req.(*Message))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Textme_ServiceDesc is the grpc.ServiceDesc for Textme service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Textme_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "trade.Textme",
+	HandlerType: (*TextmeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ping",
+			Handler:    _Textme_Ping_Handler,
+		},
+		{
+			MethodName: "Send",
+			Handler:    _Textme_Send_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "what.proto",
+}

@@ -9,3 +9,8 @@ import "matter.proto";
 service Hello {
     rpc Ping(Msg) returns (Nothing);
 }
+
+service Textme {
+    rpc Ping(Msg) returns (Nothing);
+    rpc Send(Message) returns (Message);
+};
