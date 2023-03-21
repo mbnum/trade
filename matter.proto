@@ -1125,11 +1125,10 @@ message Messages {
 
 message Template {
     string content = 2;
-    string name = 3;
-    string account_id = 4;
-    string id = 5; // e.g abc.html, xyz.erb
-    int64 updated = 6;
-    string by = 7;
+    string account_id = 3;
+    string id = 4; // e.g abc.html, xyz.erb
+    int64 updated = 5;
+    string by = 6;
 }
 
 message Templates {
