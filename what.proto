@@ -14,9 +14,9 @@ service Textme {
     rpc Ping(Msg) returns (Nothing);
     rpc Send(Message) returns (Message);
 
-    rpc ReadTemplate(Key) returns (Message);
-    rpc ListTemplates(ListRequest) returns (Messages);
-    rpc CreateTemplate(Message) returns (Message);
+    rpc ReadTemplate(Key) returns (Template);
+    rpc ListTemplates(ListRequest) returns (Templates);
+    rpc CreateTemplate(Template) returns (Template);
     rpc DeleteTemplate(Key) returns (Nothing);
-    rpc UpdateTemplate(Message) returns (Message);
+    rpc UpdateTemplate(Template) returns (Template);
 };

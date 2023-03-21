@@ -1122,3 +1122,17 @@ message Messages {
     string anchor = 3;
     int64 total = 4;
 }
+
+message Template {
+    string content = 2;
+    string account_id = 3;
+    string id = 4; // e.g abc.html, xyz.erb
+    int64 updated = 5;
+    int64 by = 6;
+}
+
+message Templates {
+    repeated Template templates = 2;
+    string anchor = 3;
+    int64 total = 4;
+}
