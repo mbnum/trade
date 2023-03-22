@@ -3,6 +3,7 @@ package trade
 import (
 	context "context"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
@@ -15,10 +16,16 @@ import (
 )
 
 func (e *Error) Error() string {
-	if e != nil {
-		return e.Out
+	if e == nil {
+		return ""
 	}
-	return ""
+
+	ej, err := json.Marshal(e)
+	if err == nil {
+		return string(ej)
+	}
+
+	return e.Out
 }
 
 func NewE(class int, out string, v ...interface{}) *Error {
