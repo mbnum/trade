@@ -14,7 +14,8 @@ message Nothing {
 message Error {
     int32 class = 2;
     string stack = 3;
-    string out = 5; // code, message
+    string message = 5; // code
+    string prob = 6; // json
 }
 
 message IntParam {

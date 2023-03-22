@@ -3,6 +3,7 @@ package trade
 import (
 	context "context"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
@@ -18,13 +19,13 @@ import (
 
 func (e *Error) Error() string {
 	if e != nil {
-		return e.Out
+		return e.Message
 	}
 	return ""
 }
 
 func (e *Error) GRPCStatus() *status.Status {
-	s, _ := status.New(codes.Internal, e.Out).WithDetails(e)
+	s, _ := status.New(codes.Internal, e.Message).WithDetails(e)
 	return s
 }
 
@@ -35,30 +36,38 @@ func GrpcToErr(err error) *Error {
 
 	se, ok := err.(interface{ GRPCStatus() *status.Status })
 	if !ok {
-		return &Error{Class: 500, Out: err.Error()}
+		return &Error{Class: 500, Message: err.Error()}
 	}
 	s := se.GRPCStatus()
 
 	details := s.Details()
 	if len(details) == 0 {
-		return &Error{Class: 500, Out: s.Message()}
+		return &Error{Class: 500, Message: s.Message()}
 	}
 
 	e, ok := details[0].(*Error)
 	if !ok {
-		return &Error{Class: 500, Out: s.Message()}
+		return &Error{Class: 500, Message: s.Message()}
 	}
 	return e
 }
 
-func NewE(class int, out string, v ...interface{}) *Error {
-	return &Error{Class: int32(class), Out: out, Stack: "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()}
+func NewE(class int, message string, v ...interface{}) *Error {
+	e := &Error{Class: int32(class), Message: message}
+	if len(v) > 0 {
+		if b, err := json.Marshal(v[0]); err == nil {
+			e.Prob = string(b)
+			v = v[1:]
+		}
+	}
+	e.Stack = "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()
+	return e
 }
 
 func NewError(err error, v ...interface{}) *Error {
 	pberr, ok := err.(*Error)
 	if !ok {
-		return &Error{Class: 500, Out: err.Error(), Stack: "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()}
+		return &Error{Class: 500, Message: err.Error(), Stack: "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()}
 	}
 	pberr.Stack += "created:" + strconv.Itoa(int(time.Now().UnixNano()/1e6)) + "," + fmt.Sprintf(strings.Repeat("%v,", len(v)), v...) + getMinifiedStack()
 	return pberr
