@@ -1,12 +1,17 @@
 package trade
 
 import (
+	context "context"
+	"encoding/base64"
 	"fmt"
 	"os"
 	"runtime"
 	"strconv"
 	"strings"
 	"time"
+
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/protobuf/proto"
 )
 
 func (e *Error) Error() string {
@@ -49,4 +54,37 @@ func getMinifiedStack() string {
 		stack += fmt.Sprintf("%s:%d", fn, line) + ","
 	}
 	return strings.TrimRight(stack, ",")
+}
+
+func CtxGrpc(ctx *Context) context.Context {
+	data, err := proto.Marshal(ctx)
+	if err != nil {
+		panic(fmt.Sprintf("unable to marshal ctx, %v", ctx))
+	}
+	cred64 := base64.StdEncoding.EncodeToString(data)
+	return metadata.NewOutgoingContext(context.Background(), metadata.Pairs("ctx", cred64))
+}
+
+func GrpcToCtx(c context.Context) *Context {
+	md, ok := metadata.FromIncomingContext(c)
+	if !ok {
+		md, ok = metadata.FromOutgoingContext(c)
+		if !ok {
+			return nil
+		}
+	}
+	cred64 := strings.Join(md["ctx"], "")
+	if cred64 == "" {
+		return nil
+	}
+	data, err := base64.StdEncoding.DecodeString(cred64)
+	if err != nil {
+		panic(fmt.Sprintf("%v, %s: %s", err, "wrong base64 ", cred64))
+	}
+
+	ctx := &Context{}
+	if err = proto.Unmarshal(data, ctx); err != nil {
+		panic(fmt.Sprintf("%v, %s: %s", err, "unable to unmarshal ctx ", cred64))
+	}
+	return ctx
 }
