@@ -3,7 +3,6 @@ package trade
 import (
 	context "context"
 	"encoding/base64"
-	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
@@ -11,21 +10,45 @@ import (
 	"strings"
 	"time"
 
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 )
 
 func (e *Error) Error() string {
-	if e == nil {
-		return ""
+	if e != nil {
+		return e.Out
 	}
+	return ""
+}
 
-	ej, err := json.Marshal(e)
+func (e *Error) GRPCStatus() *status.Status {
+	s, _ := status.New(codes.Internal, e.Out).WithDetails(e)
+	return s
+}
+
+func GrpcToErr(err error) *Error {
 	if err == nil {
-		return string(ej)
+		return nil
 	}
 
-	return e.Out
+	se, ok := err.(interface{ GRPCStatus() *status.Status })
+	if !ok {
+		return &Error{Class: 500, Out: err.Error()}
+	}
+	s := se.GRPCStatus()
+
+	details := s.Details()
+	if len(details) == 0 {
+		return &Error{Class: 500, Out: s.Message()}
+	}
+
+	e, ok := details[0].(*Error)
+	if !ok {
+		return &Error{Class: 500, Out: s.Message()}
+	}
+	return e
 }
 
 func NewE(class int, out string, v ...interface{}) *Error {
