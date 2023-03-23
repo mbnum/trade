@@ -1107,7 +1107,7 @@ message Message {
     string from = 10;
     repeated string tos = 12; // to, cc
 
-    string created = 11;
+    int64 created = 11;
     repeated MessageAction actions = 15;
 }
 
