@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"reflect"
 	"runtime"
 	"strconv"
 	"strings"
@@ -55,7 +54,7 @@ func GrpcToErr(err error) *Error {
 
 func NewE(class int, message string, v ...interface{}) *Error {
 	e := &Error{Class: int32(class), Message: message}
-	if message == "" && len(v) > 0 && reflect.ValueOf(v[0]).Kind() == reflect.Struct {
+	if message == "" && len(v) > 0 {
 		if b, err := json.Marshal(v[0]); err == nil {
 			e.Prob = string(b)
 			v = v[1:]
