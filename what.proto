@@ -21,6 +21,6 @@ service Textme {
     rpc UpdateTemplate(Template) returns (Template);
 };
 
-service Fixup {
+service Sidefile {
     rpc ToThumbnails(ImageFile) returns (ImageFile);
 };

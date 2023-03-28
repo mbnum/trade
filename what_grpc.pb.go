@@ -402,86 +402,86 @@ var Textme_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "what.proto",
 }
 
-// FixupClient is the client API for Fixup service.
+// SidefileClient is the client API for Sidefile service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FixupClient interface {
+type SidefileClient interface {
 	ToThumbnails(ctx context.Context, in *ImageFile, opts ...grpc.CallOption) (*ImageFile, error)
 }
 
-type fixupClient struct {
+type sidefileClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFixupClient(cc grpc.ClientConnInterface) FixupClient {
-	return &fixupClient{cc}
+func NewSidefileClient(cc grpc.ClientConnInterface) SidefileClient {
+	return &sidefileClient{cc}
 }
 
-func (c *fixupClient) ToThumbnails(ctx context.Context, in *ImageFile, opts ...grpc.CallOption) (*ImageFile, error) {
+func (c *sidefileClient) ToThumbnails(ctx context.Context, in *ImageFile, opts ...grpc.CallOption) (*ImageFile, error) {
 	out := new(ImageFile)
-	err := c.cc.Invoke(ctx, "/trade.Fixup/ToThumbnails", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/trade.Sidefile/ToThumbnails", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FixupServer is the server API for Fixup service.
-// All implementations must embed UnimplementedFixupServer
+// SidefileServer is the server API for Sidefile service.
+// All implementations must embed UnimplementedSidefileServer
 // for forward compatibility
-type FixupServer interface {
+type SidefileServer interface {
 	ToThumbnails(context.Context, *ImageFile) (*ImageFile, error)
-	mustEmbedUnimplementedFixupServer()
+	mustEmbedUnimplementedSidefileServer()
 }
 
-// UnimplementedFixupServer must be embedded to have forward compatible implementations.
-type UnimplementedFixupServer struct {
+// UnimplementedSidefileServer must be embedded to have forward compatible implementations.
+type UnimplementedSidefileServer struct {
 }
 
-func (UnimplementedFixupServer) ToThumbnails(context.Context, *ImageFile) (*ImageFile, error) {
+func (UnimplementedSidefileServer) ToThumbnails(context.Context, *ImageFile) (*ImageFile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ToThumbnails not implemented")
 }
-func (UnimplementedFixupServer) mustEmbedUnimplementedFixupServer() {}
+func (UnimplementedSidefileServer) mustEmbedUnimplementedSidefileServer() {}
 
-// UnsafeFixupServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FixupServer will
+// UnsafeSidefileServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SidefileServer will
 // result in compilation errors.
-type UnsafeFixupServer interface {
-	mustEmbedUnimplementedFixupServer()
+type UnsafeSidefileServer interface {
+	mustEmbedUnimplementedSidefileServer()
 }
 
-func RegisterFixupServer(s grpc.ServiceRegistrar, srv FixupServer) {
-	s.RegisterService(&Fixup_ServiceDesc, srv)
+func RegisterSidefileServer(s grpc.ServiceRegistrar, srv SidefileServer) {
+	s.RegisterService(&Sidefile_ServiceDesc, srv)
 }
 
-func _Fixup_ToThumbnails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Sidefile_ToThumbnails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageFile)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FixupServer).ToThumbnails(ctx, in)
+		return srv.(SidefileServer).ToThumbnails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Fixup/ToThumbnails",
+		FullMethod: "/trade.Sidefile/ToThumbnails",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FixupServer).ToThumbnails(ctx, req.(*ImageFile))
+		return srv.(SidefileServer).ToThumbnails(ctx, req.(*ImageFile))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Fixup_ServiceDesc is the grpc.ServiceDesc for Fixup service.
+// Sidefile_ServiceDesc is the grpc.ServiceDesc for Sidefile service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Fixup_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trade.Fixup",
-	HandlerType: (*FixupServer)(nil),
+var Sidefile_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "trade.Sidefile",
+	HandlerType: (*SidefileServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ToThumbnails",
-			Handler:    _Fixup_ToThumbnails_Handler,
+			Handler:    _Sidefile_ToThumbnails_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
