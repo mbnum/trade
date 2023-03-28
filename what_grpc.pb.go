@@ -401,3 +401,89 @@ var Textme_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "what.proto",
 }
+
+// FixupClient is the client API for Fixup service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FixupClient interface {
+	ToThumbnails(ctx context.Context, in *ImageFile, opts ...grpc.CallOption) (*ImageFile, error)
+}
+
+type fixupClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFixupClient(cc grpc.ClientConnInterface) FixupClient {
+	return &fixupClient{cc}
+}
+
+func (c *fixupClient) ToThumbnails(ctx context.Context, in *ImageFile, opts ...grpc.CallOption) (*ImageFile, error) {
+	out := new(ImageFile)
+	err := c.cc.Invoke(ctx, "/trade.Fixup/ToThumbnails", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FixupServer is the server API for Fixup service.
+// All implementations must embed UnimplementedFixupServer
+// for forward compatibility
+type FixupServer interface {
+	ToThumbnails(context.Context, *ImageFile) (*ImageFile, error)
+	mustEmbedUnimplementedFixupServer()
+}
+
+// UnimplementedFixupServer must be embedded to have forward compatible implementations.
+type UnimplementedFixupServer struct {
+}
+
+func (UnimplementedFixupServer) ToThumbnails(context.Context, *ImageFile) (*ImageFile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ToThumbnails not implemented")
+}
+func (UnimplementedFixupServer) mustEmbedUnimplementedFixupServer() {}
+
+// UnsafeFixupServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FixupServer will
+// result in compilation errors.
+type UnsafeFixupServer interface {
+	mustEmbedUnimplementedFixupServer()
+}
+
+func RegisterFixupServer(s grpc.ServiceRegistrar, srv FixupServer) {
+	s.RegisterService(&Fixup_ServiceDesc, srv)
+}
+
+func _Fixup_ToThumbnails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageFile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FixupServer).ToThumbnails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Fixup/ToThumbnails",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FixupServer).ToThumbnails(ctx, req.(*ImageFile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Fixup_ServiceDesc is the grpc.ServiceDesc for Fixup service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Fixup_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "trade.Fixup",
+	HandlerType: (*FixupServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ToThumbnails",
+			Handler:    _Fixup_ToThumbnails_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "what.proto",
+}

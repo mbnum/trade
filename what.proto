@@ -20,3 +20,7 @@ service Textme {
     rpc DeleteTemplate(Key) returns (Nothing);
     rpc UpdateTemplate(Template) returns (Template);
 };
+
+service Fixup {
+    rpc ToThumbnails(ImageFile) returns (ImageFile);
+};

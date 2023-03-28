@@ -1137,3 +1137,37 @@ message Templates {
     string anchor = 3;
     int64 total = 4;
 }
+
+message ImageFile {
+    string account_id = 2;
+    string id = 3;
+    string name = 4;
+    string desc = 5;
+    string url = 6; // derived
+
+    int64 created = 7;
+    string created_by = 8;
+    int64 accessed = 9;
+
+    string type = 10; // MIME type
+    int64 size = 11; // bytes
+    string md5 = 12;
+    int64 width = 13;
+    int64 height = 14;
+
+    string source = 20; // s3, link
+    // s3
+    string s3_bucket = 21;
+    string s3_key = 22;
+    int64 s3_ttl = 23;
+    int64 s3_deleted = 24;
+    string s3_acl = 25;
+    // link
+    string link = 30;
+
+    string parent_id = 50;
+
+    repeated int64 thumbnail_resize = 51;
+    repeated string thumbnail_ids = 52;
+    repeated ImageFile thumbnails = 53; // derived
+}
