@@ -106,11 +106,11 @@ var Hello_ServiceDesc = grpc.ServiceDesc{
 type TextmeClient interface {
 	Ping(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Nothing, error)
 	Send(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
-	ReadTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Template, error)
-	ListTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*Templates, error)
-	CreateTemplate(ctx context.Context, in *Template, opts ...grpc.CallOption) (*Template, error)
-	DeleteTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error)
-	UpdateTemplate(ctx context.Context, in *Template, opts ...grpc.CallOption) (*Template, error)
+	ReadTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextTemplate, error)
+	ListTextTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextTemplates, error)
+	CreateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error)
+	DeleteTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error)
+	UpdateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error)
 }
 
 type textmeClient struct {
@@ -139,45 +139,45 @@ func (c *textmeClient) Send(ctx context.Context, in *Message, opts ...grpc.CallO
 	return out, nil
 }
 
-func (c *textmeClient) ReadTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Template, error) {
-	out := new(Template)
-	err := c.cc.Invoke(ctx, "/trade.Textme/ReadTemplate", in, out, opts...)
+func (c *textmeClient) ReadTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextTemplate, error) {
+	out := new(TextTemplate)
+	err := c.cc.Invoke(ctx, "/trade.Textme/ReadTextTemplate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *textmeClient) ListTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*Templates, error) {
-	out := new(Templates)
-	err := c.cc.Invoke(ctx, "/trade.Textme/ListTemplates", in, out, opts...)
+func (c *textmeClient) ListTextTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextTemplates, error) {
+	out := new(TextTemplates)
+	err := c.cc.Invoke(ctx, "/trade.Textme/ListTextTemplates", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *textmeClient) CreateTemplate(ctx context.Context, in *Template, opts ...grpc.CallOption) (*Template, error) {
-	out := new(Template)
-	err := c.cc.Invoke(ctx, "/trade.Textme/CreateTemplate", in, out, opts...)
+func (c *textmeClient) CreateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error) {
+	out := new(TextTemplate)
+	err := c.cc.Invoke(ctx, "/trade.Textme/CreateTextTemplate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *textmeClient) DeleteTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error) {
+func (c *textmeClient) DeleteTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error) {
 	out := new(Nothing)
-	err := c.cc.Invoke(ctx, "/trade.Textme/DeleteTemplate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/trade.Textme/DeleteTextTemplate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *textmeClient) UpdateTemplate(ctx context.Context, in *Template, opts ...grpc.CallOption) (*Template, error) {
-	out := new(Template)
-	err := c.cc.Invoke(ctx, "/trade.Textme/UpdateTemplate", in, out, opts...)
+func (c *textmeClient) UpdateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error) {
+	out := new(TextTemplate)
+	err := c.cc.Invoke(ctx, "/trade.Textme/UpdateTextTemplate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -190,11 +190,11 @@ func (c *textmeClient) UpdateTemplate(ctx context.Context, in *Template, opts ..
 type TextmeServer interface {
 	Ping(context.Context, *Msg) (*Nothing, error)
 	Send(context.Context, *Message) (*Message, error)
-	ReadTemplate(context.Context, *Key) (*Template, error)
-	ListTemplates(context.Context, *ListRequest) (*Templates, error)
-	CreateTemplate(context.Context, *Template) (*Template, error)
-	DeleteTemplate(context.Context, *Key) (*Nothing, error)
-	UpdateTemplate(context.Context, *Template) (*Template, error)
+	ReadTextTemplate(context.Context, *Key) (*TextTemplate, error)
+	ListTextTemplates(context.Context, *ListRequest) (*TextTemplates, error)
+	CreateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error)
+	DeleteTextTemplate(context.Context, *Key) (*Nothing, error)
+	UpdateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error)
 	mustEmbedUnimplementedTextmeServer()
 }
 
@@ -208,20 +208,20 @@ func (UnimplementedTextmeServer) Ping(context.Context, *Msg) (*Nothing, error) {
 func (UnimplementedTextmeServer) Send(context.Context, *Message) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
-func (UnimplementedTextmeServer) ReadTemplate(context.Context, *Key) (*Template, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadTemplate not implemented")
+func (UnimplementedTextmeServer) ReadTextTemplate(context.Context, *Key) (*TextTemplate, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadTextTemplate not implemented")
 }
-func (UnimplementedTextmeServer) ListTemplates(context.Context, *ListRequest) (*Templates, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTemplates not implemented")
+func (UnimplementedTextmeServer) ListTextTemplates(context.Context, *ListRequest) (*TextTemplates, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTextTemplates not implemented")
 }
-func (UnimplementedTextmeServer) CreateTemplate(context.Context, *Template) (*Template, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTemplate not implemented")
+func (UnimplementedTextmeServer) CreateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTextTemplate not implemented")
 }
-func (UnimplementedTextmeServer) DeleteTemplate(context.Context, *Key) (*Nothing, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteTemplate not implemented")
+func (UnimplementedTextmeServer) DeleteTextTemplate(context.Context, *Key) (*Nothing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTextTemplate not implemented")
 }
-func (UnimplementedTextmeServer) UpdateTemplate(context.Context, *Template) (*Template, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTemplate not implemented")
+func (UnimplementedTextmeServer) UpdateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTextTemplate not implemented")
 }
 func (UnimplementedTextmeServer) mustEmbedUnimplementedTextmeServer() {}
 
@@ -272,92 +272,92 @@ func _Textme_Send_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Textme_ReadTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Textme_ReadTextTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Key)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TextmeServer).ReadTemplate(ctx, in)
+		return srv.(TextmeServer).ReadTextTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Textme/ReadTemplate",
+		FullMethod: "/trade.Textme/ReadTextTemplate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TextmeServer).ReadTemplate(ctx, req.(*Key))
+		return srv.(TextmeServer).ReadTextTemplate(ctx, req.(*Key))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Textme_ListTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Textme_ListTextTemplates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TextmeServer).ListTemplates(ctx, in)
+		return srv.(TextmeServer).ListTextTemplates(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Textme/ListTemplates",
+		FullMethod: "/trade.Textme/ListTextTemplates",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TextmeServer).ListTemplates(ctx, req.(*ListRequest))
+		return srv.(TextmeServer).ListTextTemplates(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Textme_CreateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Template)
+func _Textme_CreateTextTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextTemplate)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TextmeServer).CreateTemplate(ctx, in)
+		return srv.(TextmeServer).CreateTextTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Textme/CreateTemplate",
+		FullMethod: "/trade.Textme/CreateTextTemplate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TextmeServer).CreateTemplate(ctx, req.(*Template))
+		return srv.(TextmeServer).CreateTextTemplate(ctx, req.(*TextTemplate))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Textme_DeleteTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Textme_DeleteTextTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Key)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TextmeServer).DeleteTemplate(ctx, in)
+		return srv.(TextmeServer).DeleteTextTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Textme/DeleteTemplate",
+		FullMethod: "/trade.Textme/DeleteTextTemplate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TextmeServer).DeleteTemplate(ctx, req.(*Key))
+		return srv.(TextmeServer).DeleteTextTemplate(ctx, req.(*Key))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Textme_UpdateTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Template)
+func _Textme_UpdateTextTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextTemplate)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TextmeServer).UpdateTemplate(ctx, in)
+		return srv.(TextmeServer).UpdateTextTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/trade.Textme/UpdateTemplate",
+		FullMethod: "/trade.Textme/UpdateTextTemplate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TextmeServer).UpdateTemplate(ctx, req.(*Template))
+		return srv.(TextmeServer).UpdateTextTemplate(ctx, req.(*TextTemplate))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -378,24 +378,24 @@ var Textme_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Textme_Send_Handler,
 		},
 		{
-			MethodName: "ReadTemplate",
-			Handler:    _Textme_ReadTemplate_Handler,
+			MethodName: "ReadTextTemplate",
+			Handler:    _Textme_ReadTextTemplate_Handler,
 		},
 		{
-			MethodName: "ListTemplates",
-			Handler:    _Textme_ListTemplates_Handler,
+			MethodName: "ListTextTemplates",
+			Handler:    _Textme_ListTextTemplates_Handler,
 		},
 		{
-			MethodName: "CreateTemplate",
-			Handler:    _Textme_CreateTemplate_Handler,
+			MethodName: "CreateTextTemplate",
+			Handler:    _Textme_CreateTextTemplate_Handler,
 		},
 		{
-			MethodName: "DeleteTemplate",
-			Handler:    _Textme_DeleteTemplate_Handler,
+			MethodName: "DeleteTextTemplate",
+			Handler:    _Textme_DeleteTextTemplate_Handler,
 		},
 		{
-			MethodName: "UpdateTemplate",
-			Handler:    _Textme_UpdateTemplate_Handler,
+			MethodName: "UpdateTextTemplate",
+			Handler:    _Textme_UpdateTextTemplate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -14,11 +14,11 @@ service Textme {
     rpc Ping(Msg) returns (Nothing);
     rpc Send(Message) returns (Message);
 
-    rpc ReadTemplate(Key) returns (Template);
-    rpc ListTemplates(ListRequest) returns (Templates);
-    rpc CreateTemplate(Template) returns (Template);
-    rpc DeleteTemplate(Key) returns (Nothing);
-    rpc UpdateTemplate(Template) returns (Template);
+    rpc ReadTextTemplate(Key) returns (TextTemplate);
+    rpc ListTextTemplates(ListRequest) returns (TextTemplates);
+    rpc CreateTextTemplate(TextTemplate) returns (TextTemplate);
+    rpc DeleteTextTemplate(Key) returns (Nothing);
+    rpc UpdateTextTemplate(TextTemplate) returns (TextTemplate);
 };
 
 service Sidefile {

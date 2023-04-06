@@ -1090,25 +1090,23 @@ message SendMailSendGridReq {
 
 message Message {
     string channel = 2;
-    repeated KV metadata = 16; // header
+    repeated KV metadata = 3; // reply-to, bcc
+    string from = 4;
+    repeated string tos = 5; // to, cc
 
-    string text = 3;
-    string text_format = 4; // plaintext, html, markdown
+    string text = 10;
+    string text_format = 11; // plaintext, html, markdown
+    string subject = 12; // plaintext
 
-    string template_id = 14; // ui component (text-format, quick-reply, mail, product, file, img...)
-    string template = 5; // e.g delta, erb, haml, php
-    repeated KV template_var = 7; // email subject
+    string template_id = 20; // text, ui component
+    repeated KV template_var = 21;
+    TextTemplate template = 22;
 
     // TODO attachment files
 
-    string id = 8;
-    repeated KV ref = 13; // reply-to, bcc
-
-    string from = 10;
-    repeated string tos = 12; // to, cc
-
-    int64 created = 11;
-    repeated MessageAction actions = 15;
+    string id = 40;
+    int64 created = 41;
+    repeated MessageAction actions = 42;
 }
 
 message MessageAction {
@@ -1124,16 +1122,20 @@ message Messages {
     int64 total = 4;
 }
 
-message Template {
-    string content = 2;
-    string account_id = 3;
-    string id = 4; // e.g abc.html, xyz.erb
+message TextTemplate {
+    string account_id = 2;
+    string id = 3;
+    string name = 4; // e.g abc.html, xyz.erb
     int64 updated = 5;
     string by = 6;
+    string var_ref = 9; // order
+    string text = 7;
+    string text_format = 8; // plaintext, html, markdown and delta, erb, haml, php...
+    string subject = 10; // plaintext
 }
 
-message Templates {
-    repeated Template templates = 2;
+message TextTemplates {
+    repeated TextTemplate templates = 2;
     string anchor = 3;
     int64 total = 4;
 }
