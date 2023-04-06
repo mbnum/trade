@@ -1015,7 +1015,8 @@ message ShopeeShop {
 message ListRequest {
     string anchor = 2;
     int32 limit = 3;
-    Key key = 4; // only http body
+    Key key = 4; // TODO rm, only http body
+    string channel = 5;
 }
 
 message CreateAgentRequest {
@@ -1086,6 +1087,19 @@ message SendMailSendGridReq {
     SendGridEmail from  = 3;
     repeated SendGridContent content = 4;
     string template_id = 5;
+}
+
+message MessageSender {
+    string account_id = 2;
+    string channel = 3;
+    string sender = 4;
+    int64 created = 5;
+}
+
+message MessageSenders {
+    repeated MessageSender message_senders = 2;
+    string anchor = 3;
+    int64 total = 4;
 }
 
 message Message {
