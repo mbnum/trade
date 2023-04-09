@@ -1118,10 +1118,11 @@ message Message {
 
     // TODO attachment files
 
-    int64 index_incre = 40;
-    string id = 41;
-    int64 created = 42;
-    repeated MessageAction actions = 43;
+    string account_id = 40;
+    int64 index_incre = 41;
+    string id = 42;
+    int64 created = 43;
+    repeated MessageAction actions = 44;
 }
 
 message MessageAction {
