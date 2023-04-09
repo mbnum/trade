@@ -567,6 +567,7 @@ message OrderAction {
     string id = 4;
     string name = 6;
     string description = 7;
+    int64 serial = 28;
     repeated string statuses = 8;
     repeated string statuses2 = 27;
     repeated string notes = 9;
