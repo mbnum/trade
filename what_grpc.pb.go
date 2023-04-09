@@ -111,6 +111,7 @@ type TextmeClient interface {
 	Ping(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Nothing, error)
 	Send(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	ListMessageSenders(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*MessageSenders, error)
+	React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Nothing, error)
 	ReadTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextTemplate, error)
 	ListTextTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextTemplates, error)
 	CreateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error)
@@ -147,6 +148,15 @@ func (c *textmeClient) Send(ctx context.Context, in *Message, opts ...grpc.CallO
 func (c *textmeClient) ListMessageSenders(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*MessageSenders, error) {
 	out := new(MessageSenders)
 	err := c.cc.Invoke(ctx, "/trade.Textme/ListMessageSenders", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *textmeClient) React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Nothing, error) {
+	out := new(Nothing)
+	err := c.cc.Invoke(ctx, "/trade.Textme/React", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -205,6 +215,7 @@ type TextmeServer interface {
 	Ping(context.Context, *Msg) (*Nothing, error)
 	Send(context.Context, *Message) (*Message, error)
 	ListMessageSenders(context.Context, *ListRequest) (*MessageSenders, error)
+	React(context.Context, *Message) (*Nothing, error)
 	ReadTextTemplate(context.Context, *Key) (*TextTemplate, error)
 	ListTextTemplates(context.Context, *ListRequest) (*TextTemplates, error)
 	CreateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error)
@@ -225,6 +236,9 @@ func (UnimplementedTextmeServer) Send(context.Context, *Message) (*Message, erro
 }
 func (UnimplementedTextmeServer) ListMessageSenders(context.Context, *ListRequest) (*MessageSenders, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMessageSenders not implemented")
+}
+func (UnimplementedTextmeServer) React(context.Context, *Message) (*Nothing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method React not implemented")
 }
 func (UnimplementedTextmeServer) ReadTextTemplate(context.Context, *Key) (*TextTemplate, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadTextTemplate not implemented")
@@ -304,6 +318,24 @@ func _Textme_ListMessageSenders_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TextmeServer).ListMessageSenders(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Textme_React_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Message)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TextmeServer).React(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Textme/React",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TextmeServer).React(ctx, req.(*Message))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,6 +448,10 @@ var Textme_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListMessageSenders",
 			Handler:    _Textme_ListMessageSenders_Handler,
+		},
+		{
+			MethodName: "React",
+			Handler:    _Textme_React_Handler,
 		},
 		{
 			MethodName: "ReadTextTemplate",
