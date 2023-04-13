@@ -518,6 +518,7 @@ message OrderChangeLog {
     OrderChangeRequest in = 6;
     Order src = 7; // diff only
     Order dst = 8; // diff only
+    Message message = 13;
 }
 
 message OrderChangeLogs {
