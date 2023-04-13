@@ -1111,8 +1111,8 @@ message Message {
     repeated string tos = 5; // to, cc
 
     string text = 10;
-    string text_format = 11; // plaintext, html, markdown
-    string subject = 12; // plaintext
+    string text_format = 11; // MIME type text/plain, text/html
+    string subject = 12; // text/plain
 
     string template_id = 20; // text, ui component
     repeated KV template_var = 21;
@@ -1148,8 +1148,8 @@ message TextTemplate {
     string by = 6;
     string var_ref = 9; // order
     string text = 7;
-    string text_format = 8; // plaintext, html, markdown and delta, erb, haml, php...
-    string subject = 10; // plaintext
+    string text_format = 8; // text/plain, text/html, markdown and delta, erb, haml, php...
+    string subject = 10; // text/plain
 }
 
 message TextTemplates {
