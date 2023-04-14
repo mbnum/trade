@@ -1089,6 +1089,7 @@ message SendMailSendGridReq {
     SendGridEmail from  = 3;
     repeated SendGridContent content = 4;
     string template_id = 5;
+    map<string, string> custom_args = 6;
 }
 
 message MessageSender {
