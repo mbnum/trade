@@ -107,7 +107,7 @@ type TextmeClient interface {
 	Ping(ctx context.Context, in *Msg, opts ...grpc.CallOption) (*Nothing, error)
 	Send(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	ListMessageSenders(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*MessageSenders, error)
-	React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Nothing, error)
+	React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Messages, error)
 	ReadTextTemplate(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextTemplate, error)
 	ListTextTemplates(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextTemplates, error)
 	CreateTextTemplate(ctx context.Context, in *TextTemplate, opts ...grpc.CallOption) (*TextTemplate, error)
@@ -150,8 +150,8 @@ func (c *textmeClient) ListMessageSenders(ctx context.Context, in *ListRequest, 
 	return out, nil
 }
 
-func (c *textmeClient) React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Nothing, error) {
-	out := new(Nothing)
+func (c *textmeClient) React(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Messages, error) {
+	out := new(Messages)
 	err := c.cc.Invoke(ctx, "/trade.Textme/React", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -211,7 +211,7 @@ type TextmeServer interface {
 	Ping(context.Context, *Msg) (*Nothing, error)
 	Send(context.Context, *Message) (*Message, error)
 	ListMessageSenders(context.Context, *ListRequest) (*MessageSenders, error)
-	React(context.Context, *Message) (*Nothing, error)
+	React(context.Context, *Message) (*Messages, error)
 	ReadTextTemplate(context.Context, *Key) (*TextTemplate, error)
 	ListTextTemplates(context.Context, *ListRequest) (*TextTemplates, error)
 	CreateTextTemplate(context.Context, *TextTemplate) (*TextTemplate, error)
@@ -233,7 +233,7 @@ func (UnimplementedTextmeServer) Send(context.Context, *Message) (*Message, erro
 func (UnimplementedTextmeServer) ListMessageSenders(context.Context, *ListRequest) (*MessageSenders, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMessageSenders not implemented")
 }
-func (UnimplementedTextmeServer) React(context.Context, *Message) (*Nothing, error) {
+func (UnimplementedTextmeServer) React(context.Context, *Message) (*Messages, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method React not implemented")
 }
 func (UnimplementedTextmeServer) ReadTextTemplate(context.Context, *Key) (*TextTemplate, error) {

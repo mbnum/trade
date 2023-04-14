@@ -14,7 +14,7 @@ service Textme {
     rpc Ping(Msg) returns (Nothing);
     rpc Send(Message) returns (Message);
     rpc ListMessageSenders(ListRequest) returns (MessageSenders);
-    rpc React(Message) returns (Nothing);
+    rpc React(Message) returns (Messages);
 
     rpc ReadTextTemplate(Key) returns (TextTemplate);
     rpc ListTextTemplates(ListRequest) returns (TextTemplates);
