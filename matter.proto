@@ -954,6 +954,7 @@ message Key {
     string user_id = 6;
     string country_code = 7; // alpha_2
     repeated string agent_ids = 50;
+    repeated string ids = 51;
 }
 
 message Webhook {
