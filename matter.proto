@@ -924,7 +924,7 @@ message GHNAddress {
 
 message INPincode {
     string officeName = 2;
-    string pincode = 3;
+    int64 pincode = 3;
     string taluk = 4;
     string districtName = 5;
     string stateName = 6;
