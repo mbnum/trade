@@ -63,6 +63,7 @@ message OrderShipping {
     string service_id = 3;
     int64 fee = 4;
     Address address = 5; // dst
+    bool unaddressable = 6;
 }
 
 // TODO billing address
