@@ -898,7 +898,7 @@ message Addresses {
 
 // TODO other address
 message Address {
-    int32 po = 2; // 3, 2, 1 are province, district, ward
+    int32 po = 2;
     string id = 3; // hn-bd-st-cva
     string province = 5;
     string name = 13; // required po
@@ -909,6 +909,7 @@ message Address {
     string instruction = 9;
     GHNAddress ghn = 11;
     Address ghtk = 12;
+    INPincode in_pincode = 14;
 }
 
 message GHNAddress {
@@ -919,6 +920,14 @@ message GHNAddress {
     int64 Code = 6;
     string WardName = 7;
     string WardCode = 8;
+}
+
+message INPincode {
+    string officeName = 2;
+    string pincode = 3;
+    string taluk = 4;
+    string districtName = 5;
+    string stateName = 6;
 }
 
 message IPAddress {
