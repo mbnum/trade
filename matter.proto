@@ -952,6 +952,7 @@ message Key {
     string order_id = 4;
     string product_id = 5;
     string user_id = 6;
+    string country_code = 7; // alpha_2
     repeated string agent_ids = 50;
 }
 
