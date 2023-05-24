@@ -1204,3 +1204,49 @@ message ImageFile {
     repeated string thumbnail_ids = 52;
     repeated ImageFile thumbnails = 53; // derived
 }
+
+message TextCampaign {
+    string account_id = 2;
+    string id = 3;
+    string name = 4;
+    int64 created = 5;
+	string created_by = 6;
+	int64 updated = 7;
+	string updated_by = 8;
+
+    // TODO complex time setting
+    int64 start_at = 9;
+    int64 end_at = 10;
+    int64 progress = 11;
+    string state = 12;
+
+    string channel = 13;
+    TextTemplate template = 14;
+    // TODO budget
+
+    string segment_id = 16;
+}
+
+message TextCampaignSegment {
+    string account_id = 2;
+    string id = 3;
+    string name = 4;
+    repeated string column_names = 5;
+    repeated StringArray rows = 6;
+}
+
+message StringArray {
+    repeated string column_values = 5;
+}
+
+message TextCampaigns {
+    repeated TextCampaign text_campaigns = 2;
+    string anchor = 3;
+    int64 total = 4;
+}
+
+message TextCampaignSegments {
+    repeated TextCampaignSegment text_campaign_segments = 2;
+    string anchor = 3;
+    int64 total = 4;
+}

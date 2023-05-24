@@ -17,6 +17,8 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+// TODO name to id
+
 func (e *Error) Error() string {
 	if e != nil {
 		return e.Message

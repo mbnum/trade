@@ -563,3 +563,413 @@ var Sidefile_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "what.proto",
 }
+
+// MassmessClient is the client API for Massmess service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MassmessClient interface {
+	ReadTextCampaign(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextCampaign, error)
+	ListTextCampaigns(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextCampaigns, error)
+	CreateTextCampaign(ctx context.Context, in *TextCampaign, opts ...grpc.CallOption) (*TextCampaign, error)
+	DeleteTextCampaign(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error)
+	UpdateTextCampaign(ctx context.Context, in *TextCampaign, opts ...grpc.CallOption) (*TextCampaign, error)
+	ReadTextCampaignSegment(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextCampaignSegment, error)
+	ListTextCampaignSegments(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextCampaignSegments, error)
+	CreateTextCampaignSegment(ctx context.Context, in *TextCampaignSegment, opts ...grpc.CallOption) (*TextCampaignSegment, error)
+	DeleteTextCampaignSegment(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error)
+	UpdateTextCampaignSegment(ctx context.Context, in *TextCampaignSegment, opts ...grpc.CallOption) (*TextCampaignSegment, error)
+}
+
+type massmessClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMassmessClient(cc grpc.ClientConnInterface) MassmessClient {
+	return &massmessClient{cc}
+}
+
+func (c *massmessClient) ReadTextCampaign(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextCampaign, error) {
+	out := new(TextCampaign)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/ReadTextCampaign", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) ListTextCampaigns(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextCampaigns, error) {
+	out := new(TextCampaigns)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/ListTextCampaigns", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) CreateTextCampaign(ctx context.Context, in *TextCampaign, opts ...grpc.CallOption) (*TextCampaign, error) {
+	out := new(TextCampaign)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/CreateTextCampaign", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) DeleteTextCampaign(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error) {
+	out := new(Nothing)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/DeleteTextCampaign", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) UpdateTextCampaign(ctx context.Context, in *TextCampaign, opts ...grpc.CallOption) (*TextCampaign, error) {
+	out := new(TextCampaign)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/UpdateTextCampaign", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) ReadTextCampaignSegment(ctx context.Context, in *Key, opts ...grpc.CallOption) (*TextCampaignSegment, error) {
+	out := new(TextCampaignSegment)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/ReadTextCampaignSegment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) ListTextCampaignSegments(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*TextCampaignSegments, error) {
+	out := new(TextCampaignSegments)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/ListTextCampaignSegments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) CreateTextCampaignSegment(ctx context.Context, in *TextCampaignSegment, opts ...grpc.CallOption) (*TextCampaignSegment, error) {
+	out := new(TextCampaignSegment)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/CreateTextCampaignSegment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) DeleteTextCampaignSegment(ctx context.Context, in *Key, opts ...grpc.CallOption) (*Nothing, error) {
+	out := new(Nothing)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/DeleteTextCampaignSegment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *massmessClient) UpdateTextCampaignSegment(ctx context.Context, in *TextCampaignSegment, opts ...grpc.CallOption) (*TextCampaignSegment, error) {
+	out := new(TextCampaignSegment)
+	err := c.cc.Invoke(ctx, "/trade.Massmess/UpdateTextCampaignSegment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MassmessServer is the server API for Massmess service.
+// All implementations must embed UnimplementedMassmessServer
+// for forward compatibility
+type MassmessServer interface {
+	ReadTextCampaign(context.Context, *Key) (*TextCampaign, error)
+	ListTextCampaigns(context.Context, *ListRequest) (*TextCampaigns, error)
+	CreateTextCampaign(context.Context, *TextCampaign) (*TextCampaign, error)
+	DeleteTextCampaign(context.Context, *Key) (*Nothing, error)
+	UpdateTextCampaign(context.Context, *TextCampaign) (*TextCampaign, error)
+	ReadTextCampaignSegment(context.Context, *Key) (*TextCampaignSegment, error)
+	ListTextCampaignSegments(context.Context, *ListRequest) (*TextCampaignSegments, error)
+	CreateTextCampaignSegment(context.Context, *TextCampaignSegment) (*TextCampaignSegment, error)
+	DeleteTextCampaignSegment(context.Context, *Key) (*Nothing, error)
+	UpdateTextCampaignSegment(context.Context, *TextCampaignSegment) (*TextCampaignSegment, error)
+	mustEmbedUnimplementedMassmessServer()
+}
+
+// UnimplementedMassmessServer must be embedded to have forward compatible implementations.
+type UnimplementedMassmessServer struct {
+}
+
+func (UnimplementedMassmessServer) ReadTextCampaign(context.Context, *Key) (*TextCampaign, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadTextCampaign not implemented")
+}
+func (UnimplementedMassmessServer) ListTextCampaigns(context.Context, *ListRequest) (*TextCampaigns, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTextCampaigns not implemented")
+}
+func (UnimplementedMassmessServer) CreateTextCampaign(context.Context, *TextCampaign) (*TextCampaign, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTextCampaign not implemented")
+}
+func (UnimplementedMassmessServer) DeleteTextCampaign(context.Context, *Key) (*Nothing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTextCampaign not implemented")
+}
+func (UnimplementedMassmessServer) UpdateTextCampaign(context.Context, *TextCampaign) (*TextCampaign, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTextCampaign not implemented")
+}
+func (UnimplementedMassmessServer) ReadTextCampaignSegment(context.Context, *Key) (*TextCampaignSegment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadTextCampaignSegment not implemented")
+}
+func (UnimplementedMassmessServer) ListTextCampaignSegments(context.Context, *ListRequest) (*TextCampaignSegments, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTextCampaignSegments not implemented")
+}
+func (UnimplementedMassmessServer) CreateTextCampaignSegment(context.Context, *TextCampaignSegment) (*TextCampaignSegment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTextCampaignSegment not implemented")
+}
+func (UnimplementedMassmessServer) DeleteTextCampaignSegment(context.Context, *Key) (*Nothing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTextCampaignSegment not implemented")
+}
+func (UnimplementedMassmessServer) UpdateTextCampaignSegment(context.Context, *TextCampaignSegment) (*TextCampaignSegment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTextCampaignSegment not implemented")
+}
+func (UnimplementedMassmessServer) mustEmbedUnimplementedMassmessServer() {}
+
+// UnsafeMassmessServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MassmessServer will
+// result in compilation errors.
+type UnsafeMassmessServer interface {
+	mustEmbedUnimplementedMassmessServer()
+}
+
+func RegisterMassmessServer(s grpc.ServiceRegistrar, srv MassmessServer) {
+	s.RegisterService(&Massmess_ServiceDesc, srv)
+}
+
+func _Massmess_ReadTextCampaign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Key)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).ReadTextCampaign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/ReadTextCampaign",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).ReadTextCampaign(ctx, req.(*Key))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_ListTextCampaigns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).ListTextCampaigns(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/ListTextCampaigns",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).ListTextCampaigns(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_CreateTextCampaign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextCampaign)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).CreateTextCampaign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/CreateTextCampaign",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).CreateTextCampaign(ctx, req.(*TextCampaign))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_DeleteTextCampaign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Key)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).DeleteTextCampaign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/DeleteTextCampaign",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).DeleteTextCampaign(ctx, req.(*Key))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_UpdateTextCampaign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextCampaign)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).UpdateTextCampaign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/UpdateTextCampaign",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).UpdateTextCampaign(ctx, req.(*TextCampaign))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_ReadTextCampaignSegment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Key)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).ReadTextCampaignSegment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/ReadTextCampaignSegment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).ReadTextCampaignSegment(ctx, req.(*Key))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_ListTextCampaignSegments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).ListTextCampaignSegments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/ListTextCampaignSegments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).ListTextCampaignSegments(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_CreateTextCampaignSegment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextCampaignSegment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).CreateTextCampaignSegment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/CreateTextCampaignSegment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).CreateTextCampaignSegment(ctx, req.(*TextCampaignSegment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_DeleteTextCampaignSegment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Key)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).DeleteTextCampaignSegment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/DeleteTextCampaignSegment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).DeleteTextCampaignSegment(ctx, req.(*Key))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Massmess_UpdateTextCampaignSegment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextCampaignSegment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MassmessServer).UpdateTextCampaignSegment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/trade.Massmess/UpdateTextCampaignSegment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MassmessServer).UpdateTextCampaignSegment(ctx, req.(*TextCampaignSegment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Massmess_ServiceDesc is the grpc.ServiceDesc for Massmess service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Massmess_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "trade.Massmess",
+	HandlerType: (*MassmessServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ReadTextCampaign",
+			Handler:    _Massmess_ReadTextCampaign_Handler,
+		},
+		{
+			MethodName: "ListTextCampaigns",
+			Handler:    _Massmess_ListTextCampaigns_Handler,
+		},
+		{
+			MethodName: "CreateTextCampaign",
+			Handler:    _Massmess_CreateTextCampaign_Handler,
+		},
+		{
+			MethodName: "DeleteTextCampaign",
+			Handler:    _Massmess_DeleteTextCampaign_Handler,
+		},
+		{
+			MethodName: "UpdateTextCampaign",
+			Handler:    _Massmess_UpdateTextCampaign_Handler,
+		},
+		{
+			MethodName: "ReadTextCampaignSegment",
+			Handler:    _Massmess_ReadTextCampaignSegment_Handler,
+		},
+		{
+			MethodName: "ListTextCampaignSegments",
+			Handler:    _Massmess_ListTextCampaignSegments_Handler,
+		},
+		{
+			MethodName: "CreateTextCampaignSegment",
+			Handler:    _Massmess_CreateTextCampaignSegment_Handler,
+		},
+		{
+			MethodName: "DeleteTextCampaignSegment",
+			Handler:    _Massmess_DeleteTextCampaignSegment_Handler,
+		},
+		{
+			MethodName: "UpdateTextCampaignSegment",
+			Handler:    _Massmess_UpdateTextCampaignSegment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "what.proto",
+}

@@ -10263,6 +10263,410 @@ func (x *ImageFile) GetThumbnails() []*ImageFile {
 	return nil
 }
 
+type TextCampaign struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AccountId string `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	Id        string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	Name      string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Created   int64  `protobuf:"varint,5,opt,name=created,proto3" json:"created,omitempty"`
+	CreatedBy string `protobuf:"bytes,6,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	Updated   int64  `protobuf:"varint,7,opt,name=updated,proto3" json:"updated,omitempty"`
+	UpdatedBy string `protobuf:"bytes,8,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
+	// TODO complex time setting
+	StartAt   int64         `protobuf:"varint,9,opt,name=start_at,json=startAt,proto3" json:"start_at,omitempty"`
+	EndAt     int64         `protobuf:"varint,10,opt,name=end_at,json=endAt,proto3" json:"end_at,omitempty"`
+	Progress  int64         `protobuf:"varint,11,opt,name=progress,proto3" json:"progress,omitempty"`
+	State     string        `protobuf:"bytes,12,opt,name=state,proto3" json:"state,omitempty"`
+	Channel   string        `protobuf:"bytes,13,opt,name=channel,proto3" json:"channel,omitempty"`
+	Template  *TextTemplate `protobuf:"bytes,14,opt,name=template,proto3" json:"template,omitempty"` // TODO budget
+	SegmentId string        `protobuf:"bytes,16,opt,name=segment_id,json=segmentId,proto3" json:"segment_id,omitempty"`
+}
+
+func (x *TextCampaign) Reset() {
+	*x = TextCampaign{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[123]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextCampaign) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextCampaign) ProtoMessage() {}
+
+func (x *TextCampaign) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[123]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextCampaign.ProtoReflect.Descriptor instead.
+func (*TextCampaign) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{123}
+}
+
+func (x *TextCampaign) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetCreated() int64 {
+	if x != nil {
+		return x.Created
+	}
+	return 0
+}
+
+func (x *TextCampaign) GetCreatedBy() string {
+	if x != nil {
+		return x.CreatedBy
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetUpdated() int64 {
+	if x != nil {
+		return x.Updated
+	}
+	return 0
+}
+
+func (x *TextCampaign) GetUpdatedBy() string {
+	if x != nil {
+		return x.UpdatedBy
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetStartAt() int64 {
+	if x != nil {
+		return x.StartAt
+	}
+	return 0
+}
+
+func (x *TextCampaign) GetEndAt() int64 {
+	if x != nil {
+		return x.EndAt
+	}
+	return 0
+}
+
+func (x *TextCampaign) GetProgress() int64 {
+	if x != nil {
+		return x.Progress
+	}
+	return 0
+}
+
+func (x *TextCampaign) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetChannel() string {
+	if x != nil {
+		return x.Channel
+	}
+	return ""
+}
+
+func (x *TextCampaign) GetTemplate() *TextTemplate {
+	if x != nil {
+		return x.Template
+	}
+	return nil
+}
+
+func (x *TextCampaign) GetSegmentId() string {
+	if x != nil {
+		return x.SegmentId
+	}
+	return ""
+}
+
+type TextCampaignSegment struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AccountId   string         `protobuf:"bytes,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	Id          string         `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string         `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	ColumnNames []string       `protobuf:"bytes,5,rep,name=column_names,json=columnNames,proto3" json:"column_names,omitempty"`
+	Rows        []*StringArray `protobuf:"bytes,6,rep,name=rows,proto3" json:"rows,omitempty"`
+}
+
+func (x *TextCampaignSegment) Reset() {
+	*x = TextCampaignSegment{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[124]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextCampaignSegment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextCampaignSegment) ProtoMessage() {}
+
+func (x *TextCampaignSegment) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[124]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextCampaignSegment.ProtoReflect.Descriptor instead.
+func (*TextCampaignSegment) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{124}
+}
+
+func (x *TextCampaignSegment) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *TextCampaignSegment) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *TextCampaignSegment) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TextCampaignSegment) GetColumnNames() []string {
+	if x != nil {
+		return x.ColumnNames
+	}
+	return nil
+}
+
+func (x *TextCampaignSegment) GetRows() []*StringArray {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type StringArray struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ColumnValues []string `protobuf:"bytes,5,rep,name=column_values,json=columnValues,proto3" json:"column_values,omitempty"`
+}
+
+func (x *StringArray) Reset() {
+	*x = StringArray{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[125]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StringArray) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringArray) ProtoMessage() {}
+
+func (x *StringArray) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[125]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringArray.ProtoReflect.Descriptor instead.
+func (*StringArray) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{125}
+}
+
+func (x *StringArray) GetColumnValues() []string {
+	if x != nil {
+		return x.ColumnValues
+	}
+	return nil
+}
+
+type TextCampaigns struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TextCampaigns []*TextCampaign `protobuf:"bytes,2,rep,name=text_campaigns,json=textCampaigns,proto3" json:"text_campaigns,omitempty"`
+	Anchor        string          `protobuf:"bytes,3,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	Total         int64           `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *TextCampaigns) Reset() {
+	*x = TextCampaigns{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[126]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextCampaigns) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextCampaigns) ProtoMessage() {}
+
+func (x *TextCampaigns) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[126]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextCampaigns.ProtoReflect.Descriptor instead.
+func (*TextCampaigns) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{126}
+}
+
+func (x *TextCampaigns) GetTextCampaigns() []*TextCampaign {
+	if x != nil {
+		return x.TextCampaigns
+	}
+	return nil
+}
+
+func (x *TextCampaigns) GetAnchor() string {
+	if x != nil {
+		return x.Anchor
+	}
+	return ""
+}
+
+func (x *TextCampaigns) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type TextCampaignSegments struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TextCampaignSegments []*TextCampaignSegment `protobuf:"bytes,2,rep,name=text_campaign_segments,json=textCampaignSegments,proto3" json:"text_campaign_segments,omitempty"`
+	Anchor               string                 `protobuf:"bytes,3,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	Total                int64                  `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *TextCampaignSegments) Reset() {
+	*x = TextCampaignSegments{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_matter_proto_msgTypes[127]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TextCampaignSegments) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TextCampaignSegments) ProtoMessage() {}
+
+func (x *TextCampaignSegments) ProtoReflect() protoreflect.Message {
+	mi := &file_matter_proto_msgTypes[127]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TextCampaignSegments.ProtoReflect.Descriptor instead.
+func (*TextCampaignSegments) Descriptor() ([]byte, []int) {
+	return file_matter_proto_rawDescGZIP(), []int{127}
+}
+
+func (x *TextCampaignSegments) GetTextCampaignSegments() []*TextCampaignSegment {
+	if x != nil {
+		return x.TextCampaignSegments
+	}
+	return nil
+}
+
+func (x *TextCampaignSegments) GetAnchor() string {
+	if x != nil {
+		return x.Anchor
+	}
+	return ""
+}
+
+func (x *TextCampaignSegments) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_matter_proto protoreflect.FileDescriptor
 
 var file_matter_proto_rawDesc = []byte{
@@ -11729,9 +12133,65 @@ var file_matter_proto_rawDesc = []byte{
 	0x30, 0x0a, 0x0a, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c, 0x73, 0x18, 0x35, 0x20,
 	0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x49, 0x6d, 0x61, 0x67,
 	0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0a, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c,
-	0x73, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x73, 0x22, 0x91, 0x03, 0x0a, 0x0c, 0x54, 0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69,
+	0x67, 0x6e, 0x12, 0x1d, 0x0a, 0x0a, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49,
+	0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12,
+	0x1d, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x18,
+	0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x19, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x72, 0x74,
+	0x5f, 0x61, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x73, 0x74, 0x61, 0x72, 0x74,
+	0x41, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x65, 0x6e, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x0a, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x05, 0x65, 0x6e, 0x64, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x72, 0x6f,
+	0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x72, 0x6f,
+	0x67, 0x72, 0x65, 0x73, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x0c,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x2f, 0x0a, 0x08, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74,
+	0x65, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e,
+	0x54, 0x65, 0x78, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x52, 0x08, 0x74, 0x65,
+	0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x67, 0x6d, 0x65, 0x6e,
+	0x74, 0x5f, 0x69, 0x64, 0x18, 0x10, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x65, 0x67, 0x6d,
+	0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0xa3, 0x01, 0x0a, 0x13, 0x54, 0x65, 0x78, 0x74, 0x43, 0x61,
+	0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x53, 0x65, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1d, 0x0a,
+	0x0a, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73,
+	0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x4e, 0x61,
+	0x6d, 0x65, 0x73, 0x12, 0x26, 0x0a, 0x04, 0x72, 0x6f, 0x77, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x12, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
+	0x41, 0x72, 0x72, 0x61, 0x79, 0x52, 0x04, 0x72, 0x6f, 0x77, 0x73, 0x22, 0x32, 0x0a, 0x0b, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x41, 0x72, 0x72, 0x61, 0x79, 0x12, 0x23, 0x0a, 0x0d, 0x63, 0x6f,
+	0x6c, 0x75, 0x6d, 0x6e, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x0c, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x22,
+	0x79, 0x0a, 0x0d, 0x54, 0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x73,
+	0x12, 0x3a, 0x0a, 0x0e, 0x74, 0x65, 0x78, 0x74, 0x5f, 0x63, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67,
+	0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65,
+	0x2e, 0x54, 0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x52, 0x0d, 0x74,
+	0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x73, 0x12, 0x16, 0x0a, 0x06,
+	0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x6e,
+	0x63, 0x68, 0x6f, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x22, 0x96, 0x01, 0x0a, 0x14, 0x54,
+	0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x53, 0x65, 0x67, 0x6d, 0x65,
+	0x6e, 0x74, 0x73, 0x12, 0x50, 0x0a, 0x16, 0x74, 0x65, 0x78, 0x74, 0x5f, 0x63, 0x61, 0x6d, 0x70,
+	0x61, 0x69, 0x67, 0x6e, 0x5f, 0x73, 0x65, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x2e, 0x54, 0x65, 0x78, 0x74,
+	0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x53, 0x65, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x14, 0x74, 0x65, 0x78, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x61, 0x69, 0x67, 0x6e, 0x53, 0x65, 0x67,
+	0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x6e, 0x63, 0x68, 0x6f, 0x72, 0x12, 0x14, 0x0a,
+	0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x6d, 0x62, 0x6e, 0x75, 0x6d, 0x2f, 0x74, 0x72, 0x61, 0x64, 0x65, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -11746,7 +12206,7 @@ func file_matter_proto_rawDescGZIP() []byte {
 	return file_matter_proto_rawDescData
 }
 
-var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 128)
+var file_matter_proto_msgTypes = make([]protoimpl.MessageInfo, 133)
 var file_matter_proto_goTypes = []interface{}{
 	(*Msg)(nil),                          // 0: trade.Msg
 	(*Nothing)(nil),                      // 1: trade.Nothing
@@ -11871,11 +12331,16 @@ var file_matter_proto_goTypes = []interface{}{
 	(*TextTemplate)(nil),                 // 120: trade.TextTemplate
 	(*TextTemplates)(nil),                // 121: trade.TextTemplates
 	(*ImageFile)(nil),                    // 122: trade.ImageFile
-	nil,                                  // 123: trade.Order.FieldsEntry
-	nil,                                  // 124: trade.Account.KvmEntry
-	nil,                                  // 125: trade.Account.ActionmEntry
-	nil,                                  // 126: trade.SendGridPersonalization.DynamicTemplateDataEntry
-	nil,                                  // 127: trade.SendMailSendGridReq.CustomArgsEntry
+	(*TextCampaign)(nil),                 // 123: trade.TextCampaign
+	(*TextCampaignSegment)(nil),          // 124: trade.TextCampaignSegment
+	(*StringArray)(nil),                  // 125: trade.StringArray
+	(*TextCampaigns)(nil),                // 126: trade.TextCampaigns
+	(*TextCampaignSegments)(nil),         // 127: trade.TextCampaignSegments
+	nil,                                  // 128: trade.Order.FieldsEntry
+	nil,                                  // 129: trade.Account.KvmEntry
+	nil,                                  // 130: trade.Account.ActionmEntry
+	nil,                                  // 131: trade.SendGridPersonalization.DynamicTemplateDataEntry
+	nil,                                  // 132: trade.SendMailSendGridReq.CustomArgsEntry
 }
 var file_matter_proto_depIdxs = []int32{
 	3,   // 0: trade.Param.i:type_name -> trade.IntParam
@@ -11902,7 +12367,7 @@ var file_matter_proto_depIdxs = []int32{
 	13,  // 21: trade.Order.shipments:type_name -> trade.Shipment
 	12,  // 22: trade.Order.payment:type_name -> trade.Payment
 	12,  // 23: trade.Order.payments:type_name -> trade.Payment
-	123, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
+	128, // 24: trade.Order.fields:type_name -> trade.Order.FieldsEntry
 	19,  // 25: trade.Order.group:type_name -> trade.OrderGroup
 	17,  // 26: trade.Orders.orders:type_name -> trade.Order
 	21,  // 27: trade.OrderCohortCreatedDates.metrics:type_name -> trade.OrderCohortMetrics
@@ -11953,8 +12418,8 @@ var file_matter_proto_depIdxs = []int32{
 	72,  // 72: trade.Context.http_api:type_name -> trade.HttpApi
 	69,  // 73: trade.Context.reqruns:type_name -> trade.Reqrun
 	70,  // 74: trade.Account.others:type_name -> trade.Account
-	124, // 75: trade.Account.kvm:type_name -> trade.Account.KvmEntry
-	125, // 76: trade.Account.actionm:type_name -> trade.Account.ActionmEntry
+	129, // 75: trade.Account.kvm:type_name -> trade.Account.KvmEntry
+	130, // 76: trade.Account.actionm:type_name -> trade.Account.ActionmEntry
 	78,  // 77: trade.UserAction.email:type_name -> trade.UserActionEmail
 	87,  // 78: trade.Addresses.addresses:type_name -> trade.Address
 	88,  // 79: trade.Address.ghn:type_name -> trade.GHNAddress
@@ -11970,11 +12435,11 @@ var file_matter_proto_depIdxs = []int32{
 	70,  // 89: trade.AgentGroup.agents:type_name -> trade.Account
 	109, // 90: trade.AgentGroups.agent_groups:type_name -> trade.AgentGroup
 	112, // 91: trade.SendGridPersonalization.to:type_name -> trade.SendGridEmail
-	126, // 92: trade.SendGridPersonalization.dynamic_template_data:type_name -> trade.SendGridPersonalization.DynamicTemplateDataEntry
+	131, // 92: trade.SendGridPersonalization.dynamic_template_data:type_name -> trade.SendGridPersonalization.DynamicTemplateDataEntry
 	113, // 93: trade.SendMailSendGridReq.personalizations:type_name -> trade.SendGridPersonalization
 	112, // 94: trade.SendMailSendGridReq.from:type_name -> trade.SendGridEmail
 	111, // 95: trade.SendMailSendGridReq.content:type_name -> trade.SendGridContent
-	127, // 96: trade.SendMailSendGridReq.custom_args:type_name -> trade.SendMailSendGridReq.CustomArgsEntry
+	132, // 96: trade.SendMailSendGridReq.custom_args:type_name -> trade.SendMailSendGridReq.CustomArgsEntry
 	115, // 97: trade.MessageSenders.message_senders:type_name -> trade.MessageSender
 	66,  // 98: trade.Message.metadata:type_name -> trade.KV
 	66,  // 99: trade.Message.template_var:type_name -> trade.KV
@@ -11983,11 +12448,15 @@ var file_matter_proto_depIdxs = []int32{
 	117, // 102: trade.Messages.messages:type_name -> trade.Message
 	120, // 103: trade.TextTemplates.templates:type_name -> trade.TextTemplate
 	122, // 104: trade.ImageFile.thumbnails:type_name -> trade.ImageFile
-	105, // [105:105] is the sub-list for method output_type
-	105, // [105:105] is the sub-list for method input_type
-	105, // [105:105] is the sub-list for extension type_name
-	105, // [105:105] is the sub-list for extension extendee
-	0,   // [0:105] is the sub-list for field type_name
+	120, // 105: trade.TextCampaign.template:type_name -> trade.TextTemplate
+	125, // 106: trade.TextCampaignSegment.rows:type_name -> trade.StringArray
+	123, // 107: trade.TextCampaigns.text_campaigns:type_name -> trade.TextCampaign
+	124, // 108: trade.TextCampaignSegments.text_campaign_segments:type_name -> trade.TextCampaignSegment
+	109, // [109:109] is the sub-list for method output_type
+	109, // [109:109] is the sub-list for method input_type
+	109, // [109:109] is the sub-list for extension type_name
+	109, // [109:109] is the sub-list for extension extendee
+	0,   // [0:109] is the sub-list for field type_name
 }
 
 func init() { file_matter_proto_init() }
@@ -13472,6 +13941,66 @@ func file_matter_proto_init() {
 				return nil
 			}
 		}
+		file_matter_proto_msgTypes[123].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextCampaign); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_matter_proto_msgTypes[124].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextCampaignSegment); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_matter_proto_msgTypes[125].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StringArray); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_matter_proto_msgTypes[126].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextCampaigns); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_matter_proto_msgTypes[127].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TextCampaignSegments); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -13479,7 +14008,7 @@ func file_matter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_matter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   128,
+			NumMessages:   133,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

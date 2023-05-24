@@ -26,3 +26,17 @@ service Textme {
 service Sidefile {
     rpc ToThumbnails(ImageFile) returns (ImageFile);
 };
+
+service Massmess {
+    rpc ReadTextCampaign(Key) returns (TextCampaign);
+    rpc ListTextCampaigns(ListRequest) returns (TextCampaigns);
+    rpc CreateTextCampaign(TextCampaign) returns (TextCampaign);
+    rpc DeleteTextCampaign(Key) returns (Nothing);
+    rpc UpdateTextCampaign(TextCampaign) returns (TextCampaign);
+
+    rpc ReadTextCampaignSegment(Key) returns (TextCampaignSegment);
+    rpc ListTextCampaignSegments(ListRequest) returns (TextCampaignSegments);
+    rpc CreateTextCampaignSegment(TextCampaignSegment) returns (TextCampaignSegment);
+    rpc DeleteTextCampaignSegment(Key) returns (Nothing);
+    rpc UpdateTextCampaignSegment(TextCampaignSegment) returns (TextCampaignSegment);
+}
