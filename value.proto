@@ -8,6 +8,7 @@ enum OrderStatus {
     open = 0;
     canceled = 1;
     done = 2;
+    unconfirmed = 3;
 }
 
 enum Status {
