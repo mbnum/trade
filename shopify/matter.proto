@@ -208,8 +208,8 @@ message CustomerAddress {
     string country_code = 7;
     string first_name = 8;
     string last_name = 9;
-    string latitude = 10;
-    string longitude = 11;
+    // "latitude": null,
+    // "longitude": null,
     string name = 12;
     string phone = 13;
     string province = 14;
