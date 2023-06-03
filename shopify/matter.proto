@@ -9,83 +9,94 @@ message Shopify {
 
 // TODO should use other repo
 
-message Order {
-    int32 app_id = 2;
-    CustomerAddress billing_address = 3;
-    string browser_ip = 4;
-    bool buyer_accepts_marketing = 5;
-    string cancel_reason = 6;
-    string cancelled_at = 7;
-    string cart_token = 8;
-    string checkout_token = 9;
-    ClientDetails client_details = 10;
-    string closed_at = 11;
-    string created_at = 12;
-    string currency = 13;
-    string current_total_discounts = 14;
-    CurrentTotalSet current_total_discounts_set = 15;
-    CurrentTotalSet current_total_duties_set = 16;
-    string current_total_price = 17;
-    CurrentTotalSet current_total_price_set = 18;
-    string current_subtotal_price = 19;
-    CurrentTotalSet current_subtotal_price_set = 20;
-    string current_total_tax = 21;
-    CurrentTotalSet current_total_tax_set = 22;
-    Customer customer = 23;
-    string customer_locale = 24;
-    DiscountApplications discount_applications = 25;
-    repeated DiscountCode discount_codes = 26;
-    string email = 27;
-    bool estimated_taxes = 28;
-    string financial_status = 29;
-    repeated Fulfillment fulfillments = 30;
-    string fulfillment_status = 31;
-    int64 id = 32;
+// TODO https://shopify.dev/docs/api/admin-rest/2023-04/resources/order
+message Order {}
+
+// https://shopify.dev/docs/api/admin-rest/2023-01/resources/webhook#event-topics
+message OrderCreate {
+    int64 id = 2;
+    string admin_graphql_api_id = 3;
+    // "app_id": null,
+    // "browser_ip": null,
+    // "buyer_accepts_marketing": true,
+    string cancel_reason = 7;
+    string cancelled_at = 8;
+    string cart_token = 9;
+    // "checkout_id": null,
+    // "checkout_token": null,
+    string closed_at = 12;
+    bool confirmed = 13;
+    string contact_email = 14;
+    string created_at = 15;
+    string currency = 16;
+    string current_subtotal_price = 17;
+    TotalSet current_subtotal_price_set = 18;
+    string current_total_discounts = 19;
+    TotalSet current_total_discounts_set = 20;
+    // "current_total_duties_set": null,
+    string current_total_price = 22;
+    TotalSet  current_total_price_set = 23;
+    string current_total_tax = 24;
+    TotalSet current_total_tax_set = 25;
+    string customer_locale = 26;
+    // "device_id": null,
+    // "discount_codes": [],
+    string email = 29;
+    bool estimated_taxes = 30;
+    string financial_status = 31;
+    string fulfillment_status = 32;
+    // "gateway": null,
     string landing_site = 33;
-    repeated LineItem line_items = 34;
-    int64 location_id = 35;
-    int64 merchant_of_record_app_id = 36;
+    string landing_site_ref = 34;
+    // "location_id": null,
+    // "merchant_of_record_app_id": null,
     string name = 37;
     string note = 38;
-    repeated Attribute note_attributes = 39;
+    // "note_attributes": [],
     int64 number = 40;
     int64 order_number = 41;
-    CurrentTotalSet original_total_duties_set = 42;
-    PaymentTerms payment_terms = 43;
+    string order_status_url = 42;
+    TotalSet original_total_duties_set= 43;
     repeated string payment_gateway_names = 44;
     string phone = 45;
     string presentment_currency = 46;
     string processed_at = 47;
     string processing_method = 48;
-    string referring_site = 49;
-    repeated Refund refunds = 50;
-    CustomerAddress shipping_address = 51;
-    repeated ShippingLine shipping_lines = 52;
-    string source_name = 53;
-    string source_identifier = 54;
-    string source_url = 55;
-    float subtotal_price = 56;
-    TotalSet subtotal_price_set = 57;
-    string tags = 58;
-    repeated TaxLine tax_lines = 59;
-    bool taxes_included = 60;
-    bool test = 61;
-    string token = 62;
-    string total_discounts = 63;
-    TotalSet total_discounts_set = 64;
-    string total_line_items_price = 65;
-    TotalSet total_line_items_price_set = 66;
-    string total_outstanding = 67;
-    string total_price = 68;
-    TotalSet total_price_set = 69;
-    TotalSet total_shipping_price_set = 70;
-    string total_tax = 71;
-    TotalSet total_tax_set = 72;
-    string total_tip_received = 73;
-    float total_weight = 74;
-    string updated_at = 75;
-    int64 user_id = 76;
-    Url order_status_url = 77;
+    string reference = 49;
+    string referring_site = 50;
+    // "source_identifier": null,
+    string source_name = 52;
+    string source_url = 53;
+    string subtotal_price = 54;
+    TotalSet subtotal_price_set = 55;
+    string tags = 56;
+    // "tax_lines": [],
+    bool taxes_included = 58;
+    bool test = 59;
+    string token = 60;
+    string total_discounts = 61;
+    TotalSet total_discounts_set = 62;
+    string total_line_items_price = 63;
+    TotalSet total_line_items_price_set = 64;
+    string total_outstanding = 65;
+    string total_price = 66;
+    TotalSet total_price_set = 67;
+    TotalSet total_shipping_price_set = 68;
+    string total_tax = 69;
+    TotalSet total_tax_set = 70;
+    string total_tip_received = 71;
+    // "total_weight": 0,
+    string updated_at = 73;
+    // "user_id": null,
+    CustomerAddress billing_address = 74;
+    Customer customer = 75;
+    // "discount_applications": [],
+    // "fulfillments": [],
+    repeated LineItem line_items = 78;
+    // "payment_terms": null,
+    // "refunds": [],
+    CustomerAddress shipping_address = 81;
+    repeated ShippingLine shipping_lines = 82;
 }
 
 message Url {
@@ -99,6 +110,20 @@ message TaxLine {
 }
 
 message ShippingLine {
+    int64 id = 2;
+    // "carrier_identifier": null,
+    // "code": null,
+    // "delivery_category": null,
+    string discounted_price = 6;
+    TotalSet discounted_price_set = 7;
+    string phone = 8;
+    string price = 9;
+    TotalSet price_set = 10;
+    // "requested_fulfillment_service_id": null,
+    string source = 12;
+    string title = 13;
+    // "tax_lines": [],
+    // "discount_allocations": []
 }
 
 message Refund {
@@ -115,10 +140,35 @@ message Attribute {
 message Fulfillment {
 }
 
-message LineItem {
+message EmailMarketingConsent {
+    string state = 2;
+    // "opt_in_level": null,
+    // "consent_updated_at": null
 }
 
 message Customer {
+    int64 id = 2;
+    string email = 3;
+    bool accepts_marketing = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    string first_name = 7;
+    string last_name = 8;
+    string state = 9;
+    string note = 10;
+    bool verified_email = 11;
+    CustomerAddress default_address = 12;
+    string admin_graphql_api_id = 13;
+    string currency = 14;
+    string phone = 15;
+    // "multipass_identifier": null,
+    // "tax_exempt": false,
+    EmailMarketingConsent email_marketing_consent = 18;
+    // "sms_marketing_consent": null,
+    string tags = 20;
+    // "accepts_marketing_updated_at": null,
+    // "marketing_opt_in_level": null,
+    // "tax_exemptions": [],
 }
 
 message DiscountApplications {
@@ -153,7 +203,7 @@ message CustomerAddress {
     string address1 = 2;
     string address2 = 3;
     string city = 4;
-    Company company = 5;
+    string company = 5;
     string country = 6;
     string country_code = 7;
     string first_name = 8;
@@ -165,7 +215,41 @@ message CustomerAddress {
     string province = 14;
     string province_code = 15;
     string zip = 16;
+    int64 id = 17;
+    int64 customer_id = 18;
+    string country_name = 19;
+    bool default = 20;
 }
 
 message Company {
+}
+
+message LineItem {
+    int64 id = 2;
+    string admin_graphql_api_id = 3;
+    int64 fulfillable_quantity = 4;
+    string fulfillment_service = 5;
+    // "fulfillment_status": null,
+    bool gift_card = 7;
+    int64 grams = 8;
+    string name = 9;
+    string price = 10;
+    TotalSet price_set = 11;
+    bool product_exists = 12;
+    int64 product_id = 13;
+    // "properties": [],
+    int64 quantity = 15;
+    bool requires_shipping = 16;
+    string sku = 17;
+    bool taxable = 18;
+    string title = 19;
+    string total_discount = 20;
+    TotalSet total_discount_set = 21;
+    int64 variant_id = 22;
+    string variant_inventory_management = 23;
+    // "variant_title": null,
+    // "vendor": null,
+    // "tax_lines": [],
+    // "duties": [],
+    // "discount_allocations": []
 }
