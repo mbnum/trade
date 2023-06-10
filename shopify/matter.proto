@@ -40,7 +40,7 @@ message OrderCreate {
     TotalSet current_total_tax_set = 25;
     string customer_locale = 26;
     // "device_id": null,
-    // "discount_codes": [],
+    repeated DiscountCode discount_codes = 28;
     string email = 29;
     bool estimated_taxes = 30;
     string financial_status = 31;
@@ -177,7 +177,7 @@ message DiscountApplications {
 message DiscountCode {
     string code = 2;
     string type = 3;
-    int64 amount = 4;
+    string amount = 4;
 }
 
 message CurrentTotalSet {
