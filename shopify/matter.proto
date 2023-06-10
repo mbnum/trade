@@ -175,6 +175,9 @@ message DiscountApplications {
 }
 
 message DiscountCode {
+    string code = 2;
+    string type = 3;
+    int64 amount = 4;
 }
 
 message CurrentTotalSet {

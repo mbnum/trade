@@ -99,6 +99,12 @@ message Transportation {
 message Promotion {
 }
 
+message DiscountCode {
+    string code = 2;
+    string type = 3;
+    int64 amount = 4;
+}
+
 // how to detect & fix error on whole e.g test on every dim
 // if has error, reset amount to zero
 // between order and transaction
@@ -180,6 +186,7 @@ message Order {
     repeated OrderShipping shippings = 43;
 
     Promotion promotion = 18;
+    repeated DiscountCode discount_codes = 67;
 
     int64 subtotal = 20; // derived from item
     int64 total = 21; // derived from subtotal + shippingfee - promotion
@@ -912,6 +919,8 @@ message Address {
     Address ghtk = 12;
     INPincode in_pincode = 14;
     string zip = 15;
+    string country = 16;
+    // TODO code, point
 }
 
 message GHNAddress {
