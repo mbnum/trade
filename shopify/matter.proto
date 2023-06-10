@@ -112,7 +112,7 @@ message TaxLine {
 message ShippingLine {
     int64 id = 2;
     // "carrier_identifier": null,
-    // "code": null,
+    string code = 4;
     // "delivery_category": null,
     string discounted_price = 6;
     TotalSet discounted_price_set = 7;
