@@ -911,6 +911,7 @@ message Address {
     GHNAddress ghn = 11;
     Address ghtk = 12;
     INPincode in_pincode = 14;
+    string zip = 15;
 }
 
 message GHNAddress {
