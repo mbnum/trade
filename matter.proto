@@ -1232,6 +1232,7 @@ message TextCampaign {
 
     string channel = 13;
     TextTemplate template = 14;
+    Message message = 15;
     // TODO budget
 
     string segment_id = 16;
